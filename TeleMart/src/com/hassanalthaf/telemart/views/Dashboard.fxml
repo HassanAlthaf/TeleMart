@@ -6,6 +6,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="dashboard" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.DashboardViewModel">
-    
+
+<AnchorPane id="AnchorPane" fx:id="dashboard" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.hassanalthaf.telemart.viewmodels.DashboardViewModel">
+   <children>
+      <MenuBar maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutY="29.0" maxHeight="371.0" maxWidth="600.0" minHeight="371.0" minWidth="600.0" prefHeight="371.0" prefWidth="600.0" />
+   </children>
 </AnchorPane>

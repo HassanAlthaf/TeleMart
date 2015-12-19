@@ -1,0 +1,49 @@
+/*
+Program developed by Hassan Althaf.
+Copyright © 2015, Hassan Althaf.
+Website: http://hassanalthaf.com
+*/
+/* 
+    Created on : Dec 19, 2015, 11:29:50 PM
+    Author     : hassan
+*/
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../fonts/Lato-Regular.ttf');
+}
+
+.menu-bar {
+    -fx-background-color: #3498DB;
+}
+
+.menu:hover {
+    -fx-background-color: #51A7E0;
+}
+
+.menu:showing {
+    -fx-background-color: #2487C9;
+}
+
+.menu .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Lato-Regular';
+    -fx-font-size: 10pt;
+}
+
+.menu-item {
+    -fx-background-color: #FFFFFF;
+}
+
+.menu-item:hover {
+    -fx-background-color: #51A7E0;
+}
+
+.menu-item .label {
+    -fx-text-fill: #333333;
+    -fx-font-family: 'Lato-Regular';
+    -fx-font-size: 10pt;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: #FFFFFF;
+}
