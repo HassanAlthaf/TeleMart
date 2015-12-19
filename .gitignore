@@ -1,2 +1,6 @@
-/TeleMart/nbproject/private/
-/TeleMart-Preloader/nbproject/private/
+/TeleMart/nbproject/
+/TeleMart-Preloader/nbproject/
+/TeleMart-Preloader/dist/
+/TeleMart-Preloader/build/
+/TeleMart/dist/
+/TeleMart/build/

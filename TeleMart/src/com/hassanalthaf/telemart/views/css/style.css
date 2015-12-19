@@ -1,0 +1,58 @@
+/*
+Program developed by Hassan Althaf.
+Copyright © 2015, Hassan Althaf.
+Website: http://hassanalthaf.com
+*/
+/* 
+    Created on : Dec 19, 2015, 6:09:52 PM
+    Author     : hassan
+*/
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Lato-Hairline';
+    src: url('../fonts/Lato-Hairline.ttf');
+}
+
+.root {
+    -fx-background-color: #2C3E50;
+}
+
+.title {
+    -fx-font-family: 'Lato-Hairline';
+    -fx-font-size: 30pt;
+    -fx-text-fill: #FFFFFF;
+}
+
+.login-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 5pt;
+    -fx-padding: 10px;
+    -fx-border-width: 1pt;
+    -fx-border-style: solid;
+    -fx-border-color: #202D3A;
+    -fx-background-insets: 2, 0, 0;
+    -fx-font-family: 'Lato-Regular';
+}
+
+.button {
+    -fx-background-color: #3498DB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 11pt;
+    -fx-padding: 8px;
+    -fx-border-radius: 10pt;
+}
+
+.button:hover {
+    -fx-background-color: #51A7E0;
+}
+
+.content {
+    -fx-font-family: 'Lato-Regular';
+    -fx-font-size: 11pt;
+    -fx-text-fill: #FFFFFF;
+}
