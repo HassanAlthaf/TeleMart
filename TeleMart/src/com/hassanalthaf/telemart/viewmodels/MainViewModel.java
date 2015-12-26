@@ -40,7 +40,7 @@ public class MainViewModel implements Initializable {
             try {
                 this.openDashboard();
             } catch (IOException exception) {
-
+                exception.printStackTrace();
             }
         }
     }

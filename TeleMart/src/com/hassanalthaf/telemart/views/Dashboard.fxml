@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" fx:id="dashboard" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.hassanalthaf.telemart.viewmodels.DashboardViewModel">
+<AnchorPane id="AnchorPane" fx:id="dashboard" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.DashboardViewModel">
    <children>
       <MenuBar maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="homeMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Home" />
+                  <MenuItem fx:id="anotherPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Another Page" />
+                  <MenuItem fx:id="differentPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Different Page" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane layoutY="29.0" maxHeight="371.0" maxWidth="600.0" minHeight="371.0" minWidth="600.0" prefHeight="371.0" prefWidth="600.0" />
+      <AnchorPane fx:id="differentPage" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0">
+         <children>
+            <TextArea layoutX="155.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" promptText="Page three" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anotherPage" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0">
+         <children>
+            <TextField layoutX="180.0" layoutY="77.0" promptText="Page Two" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="home" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0">
+         <children>
+            <TextField layoutX="133.0" layoutY="150.0" text="First Page" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
