@@ -31,12 +31,9 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private AnchorPane home;
-    
+   
     @FXML
-    private AnchorPane anotherPage;
-    
-    @FXML
-    private AnchorPane differentPage;
+    private AnchorPane viewInventory;
     
     private AnchorPane currentPage;
     
@@ -65,12 +62,7 @@ public class DashboardViewModel implements Initializable {
             case "homeMenuItem":
                 this.changePage(this.home);
                 break;
-            case "anotherPageMenuItem":
-                this.changePage(this.anotherPage);
-                break;
-            case "differentPageMenuItem":
-                this.changePage(this.differentPage);
-                break;
+            
             default:
                 this.changePage(this.home);
                 break;

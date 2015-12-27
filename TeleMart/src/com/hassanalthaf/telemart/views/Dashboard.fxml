@@ -18,21 +18,26 @@
                   <MenuItem fx:id="differentPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Different Page" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Inventory">
+              <items>
+                <MenuItem fx:id="viewInventoryMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="View" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="differentPage" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0">
+      <AnchorPane fx:id="home" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane" />
+      <AnchorPane fx:id="viewInventory" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
          <children>
-            <TextArea layoutX="155.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" promptText="Page three" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anotherPage" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0">
-         <children>
-            <TextField layoutX="180.0" layoutY="77.0" promptText="Page Two" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="home" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0">
-         <children>
-            <TextField layoutX="133.0" layoutY="150.0" text="First Page" />
+            <TableView layoutX="10.0" layoutY="10.0" prefHeight="308.0" prefWidth="580.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button layoutX="10.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Add" />
+            <Button layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Update" />
+            <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Delete" />
+            <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Refresh" />
          </children>
       </AnchorPane>
    </children>

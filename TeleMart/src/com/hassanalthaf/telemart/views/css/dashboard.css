@@ -47,3 +47,7 @@ Website: http://hassanalthaf.com
 .menu-item:hover .label {
     -fx-text-fill: #FFFFFF;
 }
+
+.anchor-pane {
+    -fx-background-color: #FFFFFF;
+}
