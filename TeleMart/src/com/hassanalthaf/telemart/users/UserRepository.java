@@ -6,9 +6,11 @@
 package com.hassanalthaf.telemart.users;
 
 import com.hassanalthaf.telemart.DatabaseDriver;
+import com.hassanalthaf.telemart.users.exceptions.UserNotFoundException;
 import java.util.List;
-import org.hibernate.SQLQuery;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -29,5 +31,21 @@ public class UserRepository {
     public List<User> fetchAll() {
         Session session = this.databaseDriver.openSession();
         return session.createCriteria(User.class).list();
+    }
+    
+    public User fetchByUsername(String username) throws UserNotFoundException {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(User.class);
+        
+        criteria.add(Restrictions.eq("username", username));
+        
+        List<User> users = criteria.list();
+        
+        if (users.size() < 1) {
+            throw new UserNotFoundException();
+        }
+        
+        return users.get(0);
     }
 }
