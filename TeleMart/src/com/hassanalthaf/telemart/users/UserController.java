@@ -15,9 +15,11 @@ import org.mindrot.jbcrypt.BCrypt;
 public class UserController {
     
     private final UserRepository userRepository;
+    private UserState userState;
     
-    public UserController() {
+    public UserController(UserState userState) {
         this.userRepository = new UserRepository();
+        this.userState = userState;
     }
     
     public UserLoginResponseModes login(String username, String password) {
@@ -31,6 +33,8 @@ public class UserController {
             if (user.getRank() == UserRanks.DISABLED.getValue()) {
                 return UserLoginResponseModes.DISABLED;
             }
+            
+            this.userState.login(user);
             
             return UserLoginResponseModes.SUCCESS;
         } catch (UserNotFoundException exception) {

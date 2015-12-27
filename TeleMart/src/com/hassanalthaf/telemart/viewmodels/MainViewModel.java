@@ -7,6 +7,7 @@ package com.hassanalthaf.telemart.viewmodels;
 
 import com.hassanalthaf.telemart.users.UserController;
 import com.hassanalthaf.telemart.users.UserLoginResponseModes;
+import com.hassanalthaf.telemart.users.UserState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,13 +50,11 @@ public class MainViewModel implements Initializable {
     @FXML
     private void loginEnter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            try {
-                this.openDashboard();
-            } catch (IOException exception) {
-
-            }
+            this.login();
         }
     }
+    
+    private UserState userState;
     
     private void login() {
         String username = this.usernameBox.getText();
@@ -69,11 +68,9 @@ public class MainViewModel implements Initializable {
         switch (returnMode) {
             case DISABLED:
                 this.errorBox.setText("Your account is disabled.");
-                System.out.println("Disabled");
                 break;
             case INVALID:
                 this.errorBox.setText("Wrong details entered.");
-                System.out.println("Invalid");
                 break;
             case SUCCESS:
                 try {
@@ -94,12 +91,12 @@ public class MainViewModel implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/Dashboard.fxml"));
         Parent dashboard = fxmlLoader.load();
         DashboardViewModel dashboardViewModel = fxmlLoader.getController();
-        dashboardViewModel.show(this.mainWindow);
+        dashboardViewModel.show(this.mainWindow, this.userState);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.userController = new UserController();
+        this.userState = new UserState();
+        this.userController = new UserController(this.userState);
     }
-
 }

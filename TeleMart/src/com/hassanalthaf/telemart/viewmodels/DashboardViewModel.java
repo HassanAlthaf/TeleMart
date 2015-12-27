@@ -6,6 +6,7 @@
 package com.hassanalthaf.telemart.viewmodels;
 
 import com.hassanalthaf.telemart.Main;
+import com.hassanalthaf.telemart.users.UserState;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -38,6 +39,8 @@ public class DashboardViewModel implements Initializable {
     private AnchorPane differentPage;
     
     private AnchorPane currentPage;
+    
+    private UserState userState;
     
     private void changePage(AnchorPane page) {
         this.currentPage.setOpacity(0);
@@ -74,7 +77,7 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
-    public void show(Parent main) {
+    public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
         Stage stage = new Stage();
@@ -86,6 +89,8 @@ public class DashboardViewModel implements Initializable {
         
         Stage mainStage = (Stage)main.getScene().getWindow();
         mainStage.close();
+        
+        this.userState = userState;
     }
     
     /**
