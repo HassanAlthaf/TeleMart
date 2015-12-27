@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!--
+Program developed by Hassan Althaf.
+Copyright © 2015, Hassan Althaf.
+Website: http://hassanalthaf.com
+-->
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="hibernate.connecton.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://127.0.0.1:3306/telemart
+        </property>
+        <property name="hibernate.connection.username">
+            root
+        </property>
+        <property name="hibernate.connection.password">
+            php123
+        </property>
+        <mapping resource="com/hassanalthaf/telemart/users/User.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

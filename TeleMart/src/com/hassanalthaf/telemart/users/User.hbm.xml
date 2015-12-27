@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate MAPPING DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+Program developed by Hassan Althaf.
+Copyright © 2015, Hassan Althaf.
+Website: http://hassanalthaf.com
+-->
+
+<hibernate-mapping>
+    <class name="com.hassanalthaf.telemart.users.User" table="users">
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+        <property name="nicNumber" column="nic_number" type="string" />
+        <property name="username" column="username" type="string" />
+        <property name="password" column="password" type="string" />
+        <property name="fullName" column="full_name" type="string" />
+        <property name="contactNumber" column="contact_number" type="int" />
+        <property name="email" column="email" type="string" />
+        <property name="address" column="address" type="string" />
+        <property name="salary" column="salary" type="double" />
+        <property name="rank" column="rank" type="int" />
+    </class>
+</hibernate-mapping>
