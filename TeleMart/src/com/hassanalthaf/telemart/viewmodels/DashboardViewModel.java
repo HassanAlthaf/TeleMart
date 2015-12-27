@@ -8,6 +8,7 @@ package com.hassanalthaf.telemart.viewmodels;
 import com.hassanalthaf.telemart.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,6 +81,7 @@ public class DashboardViewModel implements Initializable {
         stage.setScene(scene);
         stage.setTitle(Main.APPLICATION_TITLE);
         stage.setResizable(false);
+        stage.setOnCloseRequest(e -> Platform.exit());
         stage.show();
         
         Stage mainStage = (Stage)main.getScene().getWindow();

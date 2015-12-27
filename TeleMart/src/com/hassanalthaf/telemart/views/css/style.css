@@ -56,3 +56,9 @@ Website: http://hassanalthaf.com
     -fx-font-size: 11pt;
     -fx-text-fill: #FFFFFF;
 }
+
+.error-box {
+    -fx-background-color: #FF0000;
+    -fx-padding: 8px;
+    -fx-text-fill: #FFFFFF;
+}
