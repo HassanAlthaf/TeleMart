@@ -5,12 +5,16 @@
  */
 package com.hassanalthaf.telemart;
 
+import com.hassanalthaf.telemart.users.User;
+import com.hassanalthaf.telemart.users.UserRepository;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -39,6 +43,9 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        UserRepository userRepository = new UserRepository();
+        //System.out.println(userRepository.fetchAll().get(0).getId());
+        System.out.println(BCrypt.hashpw("hassan123", BCrypt.gensalt()));
         launch(args);
     }
     
