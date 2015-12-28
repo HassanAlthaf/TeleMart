@@ -12,6 +12,11 @@ Website: http://hassanalthaf.com
     src: url('../fonts/Lato-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Lato-Light';
+    src: url('../fonts/Lato-Light.ttf');
+}
+
 .menu-bar {
     -fx-background-color: #3498DB;
 }
@@ -50,4 +55,21 @@ Website: http://hassanalthaf.com
 
 .anchor-pane {
     -fx-background-color: #FFFFFF;
+}
+
+.button {
+    -fx-background-color: #3498DB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 11pt;
+    -fx-padding: 8px;
+    -fx-border-radius: 10pt;
+}
+
+.button:hover {
+    -fx-background-color: #51A7E0;
+}
+
+.title {
+    -fx-font-family: 'Lato-Light';
+    -fx-font-size: 17pt;
 }

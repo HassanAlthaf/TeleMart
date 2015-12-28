@@ -6,16 +6,20 @@
 package com.hassanalthaf.telemart.viewmodels;
 
 import com.hassanalthaf.telemart.Main;
+import com.hassanalthaf.telemart.inventory.Product;
 import com.hassanalthaf.telemart.users.UserState;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -39,11 +43,20 @@ public class DashboardViewModel implements Initializable {
     
     private UserState userState;
     
+    @FXML
+    private TableView productTableView;
+    
     private void changePage(AnchorPane page) {
         this.currentPage.setOpacity(0);
         this.currentPage = page;
         this.currentPage.toFront();
         this.currentPage.setOpacity(1);
+    }
+    
+    private void populateTable() {
+        ObservableList<Product> products = this.productTableView.getItems();
+        
+        products.add(new Product("Samsung", "Galaxy A8", "Black", 75000.00, 10, "Specs"));
     }
     
     public void menuItemClick(ActionEvent event) {
@@ -62,7 +75,10 @@ public class DashboardViewModel implements Initializable {
             case "homeMenuItem":
                 this.changePage(this.home);
                 break;
-            
+            case "viewInventoryMenuItem":
+                this.changePage(this.viewInventory);
+                this.populateTable();
+                break;
             default:
                 this.changePage(this.home);
                 break;
