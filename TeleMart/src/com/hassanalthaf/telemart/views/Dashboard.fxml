@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -15,14 +16,30 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem fx:id="homeMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Home" />
-                  <MenuItem fx:id="anotherPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Another Page" />
-                  <MenuItem fx:id="differentPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Different Page" />
+              <MenuItem fx:id="homeMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Dashboard" />
+                  <MenuItem fx:id="anotherPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="About" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Inventory">
               <items>
                 <MenuItem fx:id="viewInventoryMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="View" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customers">
+              <items>
+                <MenuItem fx:id="addCustomerMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Add" />
+                  <MenuItem mnemonicParsing="false" text="Manage" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Orders">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Add" />
+                  <MenuItem mnemonicParsing="false" text="Manage" />
+              </items>
+            </Menu>
+            <Menu fx:id="userMenu" mnemonicParsing="false" text="User">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
               </items>
             </Menu>
         </menus>
@@ -65,6 +82,25 @@
             <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Refresh" />
             <Button layoutX="265.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
             <Label layoutX="219.0" layoutY="10.0" styleClass="title" text="Inventory Listing" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addCustomer" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+         <children>
+            <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Add Customer" />
+            <TextField layoutX="308.0" layoutY="154.0" styleClass="input-field" />
+            <TextField layoutX="308.0" layoutY="191.0" styleClass="input-field" />
+            <Label layoutX="125.0" layoutY="158.0" styleClass="input-label" text="Name:" />
+            <Label layoutX="125.0" layoutY="195.0" styleClass="input-label" text="Contact Number:" />
+            <TextField layoutX="308.0" layoutY="228.0" styleClass="input-field" />
+            <Label layoutX="125.0" layoutY="232.0" styleClass="input-label" text="Address:" />
+            <TextField layoutX="308.0" layoutY="265.0" styleClass="input-field" />
+            <Button layoutX="425.0" layoutY="304.0" mnemonicParsing="false" text="Save" />
+            <Label layoutX="125.0" layoutY="269.0" styleClass="input-label" text="Email Address:" />
+            <Label fx:id="addCustomerErrors" layoutX="276.0" layoutY="74.0" opacity="0.0" styleClass="errors-area" text="Label" />
+            <Label layoutX="276.0" layoutY="74.0" opacity="0.0" styleClass="success-area" text="Label" />
+            <TextField layoutX="308.0" layoutY="117.0" styleClass="input-field" />
+            <Label layoutX="125.0" layoutY="121.0" styleClass="input-label" text="NIC Number:" />
+            <CheckBox layoutX="122.0" layoutY="310.0" mnemonicParsing="false" styleClass="input-label" text="Register for Membership" />
          </children>
       </AnchorPane>
    </children>

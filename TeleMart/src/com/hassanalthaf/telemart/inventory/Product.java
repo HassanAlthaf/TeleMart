@@ -24,12 +24,12 @@ public class Product {
     public Product() {}
     
     public Product(String brand, String model, String colour, Double unitPrice, int availableQuantity, String specifications) {
-        this.brand.set(brand);
-        this.model.set(model);
-        this.colour.set(colour);
-        this.unitPrice.set(unitPrice);
-        this.availableQuantity.set(availableQuantity);
-        this.specifications = specifications;
+        this.setBrand(brand);
+        this.setModel(model);
+        this.setColour(colour);
+        this.setUnitPrice(unitPrice);
+        this.setAvailableQuantity(availableQuantity);
+        this.setSpecifications(specifications);
     }
 
     public int getId() {

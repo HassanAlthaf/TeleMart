@@ -58,7 +58,7 @@ Website: http://hassanalthaf.com
 }
 
 .error-box {
-    -fx-background-color: #FF0000;
+    -fx-background-color: #C0392B;
     -fx-padding: 8px;
     -fx-text-fill: #FFFFFF;
 }

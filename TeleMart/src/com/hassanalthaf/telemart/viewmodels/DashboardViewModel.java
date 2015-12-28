@@ -9,7 +9,6 @@ import com.hassanalthaf.telemart.Main;
 import com.hassanalthaf.telemart.inventory.Product;
 import com.hassanalthaf.telemart.users.UserState;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -18,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -39,12 +39,18 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private AnchorPane viewInventory;
     
+    @FXML
+    private AnchorPane addCustomer;
+    
     private AnchorPane currentPage;
     
     private UserState userState;
     
     @FXML
     private TableView productTableView;
+    
+    @FXML
+    private Menu userMenu;
     
     private void changePage(AnchorPane page) {
         this.currentPage.setOpacity(0);
@@ -53,7 +59,7 @@ public class DashboardViewModel implements Initializable {
         this.currentPage.setOpacity(1);
     }
     
-    private void populateTable() {
+    private void populateProductsTable() {
         ObservableList<Product> products = this.productTableView.getItems();
         
         products.add(new Product("Samsung", "Galaxy A8", "Black", 75000.00, 10, "Specs"));
@@ -77,7 +83,10 @@ public class DashboardViewModel implements Initializable {
                 break;
             case "viewInventoryMenuItem":
                 this.changePage(this.viewInventory);
-                this.populateTable();
+                this.populateProductsTable();
+                break;
+            case "addCustomerMenuItem":
+                this.changePage(this.addCustomer);
                 break;
             default:
                 this.changePage(this.home);
@@ -93,6 +102,9 @@ public class DashboardViewModel implements Initializable {
         stage.setTitle(Main.APPLICATION_TITLE);
         stage.setResizable(false);
         stage.setOnCloseRequest(e -> Platform.exit());
+        
+        this.userMenu.setText(userState.getUser().getUsername());
+        
         stage.show();
         
         Stage mainStage = (Stage)main.getScene().getWindow();
@@ -106,7 +118,6 @@ public class DashboardViewModel implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         this.currentPage = this.home;
     }    
     

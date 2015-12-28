@@ -73,3 +73,26 @@ Website: http://hassanalthaf.com
     -fx-font-family: 'Lato-Light';
     -fx-font-size: 17pt;
 }
+
+.input-label {
+    -fx-font-family: 'Lato-Regular';
+    -fx-text-fill: #444444;
+    -fx-font-size: 12pt;
+}
+
+.input-field {
+    -fx-font-family: 'Lato-Regular';
+    -fx-text-fill: #444444;
+}
+
+.errors-area {
+    -fx-background-color: #C0392B;
+    -fx-padding: 8px;
+    -fx-text-fill: #FFFFFF;
+}
+
+.success-area {
+    -fx-background-color: #27AE60;
+    -fx-padding: 8px;
+    -fx-text-fill: #FFFFFF;
+}

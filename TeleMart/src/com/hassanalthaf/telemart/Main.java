@@ -5,6 +5,8 @@
  */
 package com.hassanalthaf.telemart;
 
+import com.hassanalthaf.telemart.customers.Customer;
+import com.hassanalthaf.telemart.customers.CustomerService;
 import com.hassanalthaf.telemart.users.UserRepository;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -42,8 +44,6 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UserRepository userRepository = new UserRepository();
-        //System.out.println(userRepository.fetchByUsername("Hassan").getAddress());
         launch(args);
     }
     
