@@ -17,11 +17,15 @@ public class CustomerService {
         this.customerRepository = new CustomerRepository();
     }
     
-    public void insertNewCustomer(Customer customer) throws Exception {
+    public int insertNewCustomer(Customer customer) throws Exception {
         
         new CustomerValidator(customer);
         
-        this.customerRepository.insert(customer);
+        return this.customerRepository.insert(customer);
         
+    }
+    
+    public void save(Customer customer) {
+        this.customerRepository.update(customer);
     }
 }

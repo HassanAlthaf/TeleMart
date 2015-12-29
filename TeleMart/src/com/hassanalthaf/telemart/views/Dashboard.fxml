@@ -87,20 +87,20 @@
       <AnchorPane fx:id="addCustomer" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
          <children>
             <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Add Customer" />
-            <TextField layoutX="308.0" layoutY="154.0" styleClass="input-field" />
-            <TextField layoutX="308.0" layoutY="191.0" styleClass="input-field" />
+            <TextField fx:id="addCustomerName" layoutX="308.0" layoutY="154.0" styleClass="input-field" />
+            <TextField fx:id="addCustomerContactNumber" layoutX="308.0" layoutY="191.0" styleClass="input-field" />
             <Label layoutX="125.0" layoutY="158.0" styleClass="input-label" text="Name:" />
             <Label layoutX="125.0" layoutY="195.0" styleClass="input-label" text="Contact Number:" />
-            <TextField layoutX="308.0" layoutY="228.0" styleClass="input-field" />
+            <TextField fx:id="addCustomerAddress" layoutX="308.0" layoutY="228.0" styleClass="input-field" />
             <Label layoutX="125.0" layoutY="232.0" styleClass="input-label" text="Address:" />
-            <TextField layoutX="308.0" layoutY="265.0" styleClass="input-field" />
-            <Button layoutX="425.0" layoutY="304.0" mnemonicParsing="false" text="Save" />
+            <TextField fx:id="addCustomerEmail" layoutX="308.0" layoutY="265.0" styleClass="input-field" />
+            <Button layoutX="425.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#addCustomer" text="Save" />
             <Label layoutX="125.0" layoutY="269.0" styleClass="input-label" text="Email Address:" />
-            <Label fx:id="addCustomerErrors" layoutX="276.0" layoutY="74.0" opacity="0.0" styleClass="errors-area" text="Label" />
-            <Label layoutX="276.0" layoutY="74.0" opacity="0.0" styleClass="success-area" text="Label" />
-            <TextField layoutX="308.0" layoutY="117.0" styleClass="input-field" />
+            <Label fx:id="addCustomerErrors" alignment="CENTER" layoutX="10.0" layoutY="74.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="errors-area" text="Label" />
+            <Label fx:id="addCustomerSuccess" alignment="CENTER" layoutX="10.0" layoutY="74.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="580.0" styleClass="success-area" text="Label" />
+            <TextField fx:id="addCustomerNicNumber" layoutX="308.0" layoutY="117.0" styleClass="input-field" />
             <Label layoutX="125.0" layoutY="121.0" styleClass="input-label" text="NIC Number:" />
-            <CheckBox layoutX="122.0" layoutY="310.0" mnemonicParsing="false" styleClass="input-label" text="Register for Membership" />
+            <CheckBox fx:id="addCustomerMembership" layoutX="122.0" layoutY="310.0" mnemonicParsing="false" styleClass="input-label" text="Register for Membership" />
          </children>
       </AnchorPane>
    </children>

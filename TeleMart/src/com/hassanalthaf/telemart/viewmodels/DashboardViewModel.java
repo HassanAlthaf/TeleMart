@@ -6,6 +6,8 @@
 package com.hassanalthaf.telemart.viewmodels;
 
 import com.hassanalthaf.telemart.Main;
+import com.hassanalthaf.telemart.customers.CustomerController;
+import com.hassanalthaf.telemart.customers.CustomerService;
 import com.hassanalthaf.telemart.inventory.Product;
 import com.hassanalthaf.telemart.users.UserState;
 import java.net.URL;
@@ -17,9 +19,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -51,6 +57,32 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private Menu userMenu;
+    
+    @FXML
+    private TextField addCustomerNicNumber;
+    
+    @FXML
+    private TextField addCustomerName;
+    
+    @FXML
+    private TextField addCustomerContactNumber;
+    
+    @FXML
+    private TextField addCustomerAddress;
+    
+    @FXML
+    private TextField addCustomerEmail;
+    
+    @FXML
+    private CheckBox addCustomerMembership;
+    
+    @FXML
+    private Label addCustomerSuccess;
+    
+    @FXML
+    private Label addCustomerErrors;
+    
+    private CustomerController customerController;
     
     private void changePage(AnchorPane page) {
         this.currentPage.setOpacity(0);
@@ -94,6 +126,36 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void addCustomer(MouseEvent event) {
+        this.addCustomerSuccess.setOpacity(0);
+        this.addCustomerSuccess.setOpacity(0);
+        
+        String nicNumber = this.addCustomerNicNumber.getText();
+        String name = this.addCustomerName.getText();
+        
+        int contactNumber;
+        
+        try {
+            contactNumber = Integer.parseInt(this.addCustomerContactNumber.getText());
+        } catch (Exception exception) {
+            contactNumber = 0;
+        }
+        
+        String address = this.addCustomerAddress.getText();
+        String email = this.addCustomerEmail.getText();
+        boolean membership = this.addCustomerMembership.isSelected();
+        
+        try {
+            this.customerController.addNewCustomer(nicNumber, membership, name, contactNumber, address, email);
+            this.addCustomerSuccess.setText("Successfully stored customer details!");
+            this.addCustomerSuccess.setOpacity(1);
+        } catch (Exception exception) {
+            this.addCustomerErrors.setText(exception.getMessage());
+            this.addCustomerErrors.setOpacity(1);
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
@@ -111,6 +173,8 @@ public class DashboardViewModel implements Initializable {
         mainStage.close();
         
         this.userState = userState;
+        
+        this.customerController = new CustomerController();
     }
     
     /**

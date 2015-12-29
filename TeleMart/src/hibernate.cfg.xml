@@ -24,5 +24,6 @@ Website: http://hassanalthaf.com
             php123
         </property>
         <mapping resource="com/hassanalthaf/telemart/users/User.hbm.xml"/>
+        <mapping resource="com/hassanalthaf/telemart/customers/Customer.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
