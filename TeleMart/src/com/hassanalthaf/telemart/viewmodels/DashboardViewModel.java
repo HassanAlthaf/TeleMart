@@ -7,7 +7,7 @@ package com.hassanalthaf.telemart.viewmodels;
 
 import com.hassanalthaf.telemart.Main;
 import com.hassanalthaf.telemart.customers.CustomerController;
-import com.hassanalthaf.telemart.customers.CustomerService;
+import com.hassanalthaf.telemart.inventory.ProductController;
 import com.hassanalthaf.telemart.inventory.Product;
 import com.hassanalthaf.telemart.users.UserState;
 import java.net.URL;
@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -82,7 +83,36 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private Label addCustomerErrors;
     
+    @FXML
+    private AnchorPane addInventory;
+    
+    @FXML
+    private Label addInventorySuccess;
+    
+    @FXML
+    private Label addInventoryErrors;
+    
+    @FXML
+    private TextField addInventoryBrand;
+    
+    @FXML
+    private TextField addInventoryModel;
+    
+    @FXML
+    private TextField addInventoryColour;
+    
+    @FXML
+    private TextField addInventoryUnitPrice;
+    
+    @FXML
+    private TextField addInventoryAvailableQuantity;
+    
+    @FXML
+    private TextArea addInventorySpecifications;
+    
     private CustomerController customerController;
+    
+    private ProductController productController;
     
     private void changePage(AnchorPane page) {
         this.currentPage.setOpacity(0);
@@ -120,6 +150,9 @@ public class DashboardViewModel implements Initializable {
             case "addCustomerMenuItem":
                 this.changePage(this.addCustomer);
                 break;
+            case "addInventoryMenuItem":
+                this.changePage(this.addInventory);
+                break;
             default:
                 this.changePage(this.home);
                 break;
@@ -128,7 +161,7 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private void addCustomer(MouseEvent event) {
-        this.addCustomerSuccess.setOpacity(0);
+        this.addCustomerErrors.setOpacity(0);
         this.addCustomerSuccess.setOpacity(0);
         
         String nicNumber = this.addCustomerNicNumber.getText();
@@ -156,6 +189,43 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void addInventory(MouseEvent event) {
+        this.addInventorySuccess.setOpacity(0);
+        this.addInventoryErrors.setOpacity(0);
+        
+        String brand = this.addInventoryBrand.getText();
+        String model = this.addInventoryModel.getText();
+        String colour = this.addInventoryColour.getText();
+        
+        double unitPrice;
+        
+        try {
+            unitPrice = Double.parseDouble(this.addInventoryUnitPrice.getText());
+        } catch (Exception exception) {
+            unitPrice = 0;
+        }
+        
+        int availableQuantity;
+        
+        try {
+            availableQuantity = Integer.parseInt(this.addInventoryAvailableQuantity.getText());
+        } catch (Exception exception) {
+            availableQuantity = 0;
+        }
+        
+        String specifications = this.addInventorySpecifications.getText();
+        
+        try {
+            this.productController.addNewProduct(brand, model, colour, unitPrice, availableQuantity, specifications);
+            this.addInventorySuccess.setText("Successfully stored new inventory details!");
+            this.addInventorySuccess.setOpacity(1);
+        } catch (Exception exception) {
+            this.addInventoryErrors.setText(exception.getMessage());
+            this.addInventoryErrors.setOpacity(1);
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
@@ -175,6 +245,7 @@ public class DashboardViewModel implements Initializable {
         this.userState = userState;
         
         this.customerController = new CustomerController();
+        this.productController = new ProductController();
     }
     
     /**

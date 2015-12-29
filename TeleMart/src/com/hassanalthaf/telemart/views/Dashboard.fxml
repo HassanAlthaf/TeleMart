@@ -22,7 +22,8 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Inventory">
               <items>
-                <MenuItem fx:id="viewInventoryMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="View" />
+                  <MenuItem fx:id="addInventoryMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Add" />
+                <MenuItem fx:id="viewInventoryMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Manage" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Customers">
@@ -45,6 +46,25 @@
         </menus>
       </MenuBar>
       <AnchorPane fx:id="home" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane" />
+      <AnchorPane fx:id="addCustomer" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+         <children>
+            <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Add Customer" />
+            <TextField fx:id="addCustomerName" layoutX="308.0" layoutY="154.0" styleClass="input-field" />
+            <TextField fx:id="addCustomerContactNumber" layoutX="308.0" layoutY="191.0" styleClass="input-field" />
+            <Label layoutX="125.0" layoutY="158.0" styleClass="input-label" text="Name:" />
+            <Label layoutX="125.0" layoutY="195.0" styleClass="input-label" text="Contact Number:" />
+            <TextField fx:id="addCustomerAddress" layoutX="308.0" layoutY="228.0" styleClass="input-field" />
+            <Label layoutX="125.0" layoutY="232.0" styleClass="input-label" text="Address:" />
+            <TextField fx:id="addCustomerEmail" layoutX="308.0" layoutY="265.0" styleClass="input-field" />
+            <Button layoutX="425.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#addCustomer" text="Save" />
+            <Label layoutX="125.0" layoutY="269.0" styleClass="input-label" text="Email Address:" />
+            <Label fx:id="addCustomerErrors" alignment="CENTER" layoutX="10.0" layoutY="74.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="errors-area" text="Label" />
+            <Label fx:id="addCustomerSuccess" alignment="CENTER" layoutX="10.0" layoutY="74.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="580.0" styleClass="success-area" text="Label" />
+            <TextField fx:id="addCustomerNicNumber" layoutX="308.0" layoutY="117.0" styleClass="input-field" />
+            <Label layoutX="125.0" layoutY="121.0" styleClass="input-label" text="NIC Number:" />
+            <CheckBox fx:id="addCustomerMembership" layoutX="122.0" layoutY="310.0" mnemonicParsing="false" styleClass="input-label" text="Register for Membership" />
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="viewInventory" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
          <children>
             <TableView fx:id="productTableView" layoutX="10.0" layoutY="46.0" prefHeight="272.0" prefWidth="580.0">
@@ -76,31 +96,31 @@
                   </TableColumn>
               </columns>
             </TableView>
-            <Button layoutX="10.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Add" />
             <Button layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Update" />
             <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Delete" />
             <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Refresh" />
-            <Button layoutX="265.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
+            <Button layoutX="10.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
             <Label layoutX="219.0" layoutY="10.0" styleClass="title" text="Inventory Listing" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="addCustomer" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+      <AnchorPane fx:id="addInventory" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
          <children>
-            <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Add Customer" />
-            <TextField fx:id="addCustomerName" layoutX="308.0" layoutY="154.0" styleClass="input-field" />
-            <TextField fx:id="addCustomerContactNumber" layoutX="308.0" layoutY="191.0" styleClass="input-field" />
-            <Label layoutX="125.0" layoutY="158.0" styleClass="input-label" text="Name:" />
-            <Label layoutX="125.0" layoutY="195.0" styleClass="input-label" text="Contact Number:" />
-            <TextField fx:id="addCustomerAddress" layoutX="308.0" layoutY="228.0" styleClass="input-field" />
-            <Label layoutX="125.0" layoutY="232.0" styleClass="input-label" text="Address:" />
-            <TextField fx:id="addCustomerEmail" layoutX="308.0" layoutY="265.0" styleClass="input-field" />
-            <Button layoutX="425.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#addCustomer" text="Save" />
-            <Label layoutX="125.0" layoutY="269.0" styleClass="input-label" text="Email Address:" />
-            <Label fx:id="addCustomerErrors" alignment="CENTER" layoutX="10.0" layoutY="74.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="errors-area" text="Label" />
-            <Label fx:id="addCustomerSuccess" alignment="CENTER" layoutX="10.0" layoutY="74.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="580.0" styleClass="success-area" text="Label" />
-            <TextField fx:id="addCustomerNicNumber" layoutX="308.0" layoutY="117.0" styleClass="input-field" />
-            <Label layoutX="125.0" layoutY="121.0" styleClass="input-label" text="NIC Number:" />
-            <CheckBox fx:id="addCustomerMembership" layoutX="122.0" layoutY="310.0" mnemonicParsing="false" styleClass="input-label" text="Register for Membership" />
+            <Label layoutX="231.0" layoutY="10.0" styleClass="title" text="Add Inventory" />
+            <Label fx:id="addInventoryErrors" alignment="CENTER" layoutX="10.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="errors-area" />
+            <Label fx:id="addInventorySuccess" alignment="CENTER" layoutX="10.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="success-area" />
+            <Label layoutX="126.0" layoutY="97.0" styleClass="input-label" text="Brand:" />
+            <Label layoutX="125.0" layoutY="131.0" styleClass="input-label" text="Model:" />
+            <Label layoutX="125.0" layoutY="165.0" styleClass="input-label" text="Colour:" />
+            <Label layoutX="126.0" layoutY="202.0" styleClass="input-label" text="Unit Price:" />
+            <Label layoutX="125.0" layoutY="239.0" styleClass="input-label" text="Available Quantity;" />
+            <Label layoutX="125.0" layoutY="297.0" styleClass="input-label" text="Specifications:" />
+            <TextField fx:id="addInventoryBrand" layoutX="308.0" layoutY="93.0" styleClass="input-field" />
+            <TextField fx:id="addInventoryModel" layoutX="308.0" layoutY="127.0" styleClass="input-field" />
+            <TextField fx:id="addInventoryColour" layoutX="308.0" layoutY="161.0" styleClass="input-field" />
+            <TextField fx:id="addInventoryUnitPrice" layoutX="308.0" layoutY="198.0" styleClass="input-field" />
+            <TextField fx:id="addInventoryAvailableQuantity" layoutX="308.0" layoutY="235.0" styleClass="input-field" />
+            <TextArea fx:id="addInventorySpecifications" layoutX="308.0" layoutY="272.0" prefHeight="70.0" prefWidth="167.0" styleClass="input-field" />
+            <Button layoutX="490.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#addInventory" text="Add" />
          </children>
       </AnchorPane>
    </children>
