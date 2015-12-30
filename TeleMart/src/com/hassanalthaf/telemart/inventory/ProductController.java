@@ -30,6 +30,16 @@ public class ProductController {
         
     }
     
+    public void updateProduct(int id, String brand, String model, String colour, double unitPrice, int availableQuantity, String specifications) throws Exception {
+        
+        Product product = new Product(brand, model, colour, unitPrice, availableQuantity, specifications);
+        
+        product.setId(id);
+        
+        this.productService.update(product);
+        
+    }
+    
     public List<Product> fetchAllProducts() {
         return this.productService.fetchAllProducts();
     }

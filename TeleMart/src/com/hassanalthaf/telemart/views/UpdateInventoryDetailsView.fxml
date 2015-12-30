@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="updateInventoryDetails" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.hassanalthaf.telemart.viewmodels.UpdateInventoryDetailsViewModel">
+    <children>
+        <Label layoutX="178.0" layoutY="10.0" styleClass="title" text="Update Inventory Details" />
+        <Label fx:id="errors" alignment="CENTER" layoutX="10.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="errors-area" />
+        <Label fx:id="success" alignment="CENTER" layoutX="10.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="success-area" />
+        <Label layoutX="126.0" layoutY="97.0" styleClass="input-label" text="Brand:" />
+        <Label layoutX="125.0" layoutY="131.0" styleClass="input-label" text="Model:" />
+        <Label layoutX="125.0" layoutY="165.0" styleClass="input-label" text="Colour:" />
+        <Label layoutX="126.0" layoutY="202.0" styleClass="input-label" text="Unit Price:" />
+        <Label layoutX="125.0" layoutY="239.0" styleClass="input-label" text="Available Quantity;" />
+        <Label layoutX="125.0" layoutY="297.0" styleClass="input-label" text="Specifications:" />
+        <TextField fx:id="brand" layoutX="308.0" layoutY="93.0" styleClass="input-field" />
+        <TextField fx:id="model" layoutX="308.0" layoutY="127.0" styleClass="input-field" />
+        <TextField fx:id="colour" layoutX="308.0" layoutY="161.0" styleClass="input-field" />
+        <TextField fx:id="unitPrice" layoutX="308.0" layoutY="198.0" styleClass="input-field" />
+        <TextField fx:id="availableQuantity" layoutX="308.0" layoutY="235.0" styleClass="input-field" />
+        <TextArea fx:id="specifications" layoutX="308.0" layoutY="272.0" prefHeight="70.0" prefWidth="167.0" styleClass="input-field" />
+        <Button layoutX="490.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#updateInventory" text="Update" />
+    </children>
+</AnchorPane>

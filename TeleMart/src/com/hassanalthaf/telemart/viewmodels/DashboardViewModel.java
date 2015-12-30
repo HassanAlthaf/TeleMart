@@ -122,7 +122,7 @@ public class DashboardViewModel implements Initializable {
         this.currentPage.setOpacity(1);
     }
     
-    private void populateProductsTable() {
+    public void populateProductsTable() {
         ObservableList<Product> products = this.productTableView.getItems();
         products.clear();
         products.addAll(this.productController.fetchAllProducts());
@@ -249,6 +249,17 @@ public class DashboardViewModel implements Initializable {
     }
     
     @FXML
+    private void inventoryTableUpdate(MouseEvent event) throws Exception {
+        if (this.productTableView.getSelectionModel().getSelectedItem() != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/UpdateInventoryDetailsView.fxml"));
+            Parent updateInventoryDetails = fxmlLoader.load();
+            UpdateInventoryDetailsViewModel updateInventoryDetailsViewModel = fxmlLoader.getController();
+            
+            updateInventoryDetailsViewModel.show(this.getSelectedProduct(), this);
+        }
+    }
+    
+    @FXML
     private void inventoryTableDelete(MouseEvent event) {
         if (this.productTableView.getSelectionModel().getSelectedItem() != null) {
             int id = this.getSelectedProduct().getId();
@@ -280,9 +291,6 @@ public class DashboardViewModel implements Initializable {
         this.productController = new ProductController();
     }
     
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.currentPage = this.home;

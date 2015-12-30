@@ -35,6 +35,16 @@ public class ProductRepository {
         session.close();
     }
     
+    public void update(Product product) {
+        Session session = this.databaseDriver.openSession();
+        
+        Transaction transaction = session.beginTransaction();
+        session.update(product);
+        transaction.commit();
+        
+        session.close();
+    }
+    
     public Product fetchProduct(int id) throws ProductNotFoundException {
         Session session = this.databaseDriver.openSession();
         

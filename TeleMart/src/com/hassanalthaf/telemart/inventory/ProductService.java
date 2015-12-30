@@ -26,6 +26,12 @@ class ProductService {
         this.productRepository.insertProduct(product);
     }
     
+    public void update(Product product) throws Exception {
+        new ProductValidator(product);
+        
+        this.productRepository.update(product);
+    }
+    
     public List<Product> fetchAllProducts() {
         return this.productRepository.fetchAllProducts();
     }
