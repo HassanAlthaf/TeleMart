@@ -16,6 +16,7 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -235,17 +236,30 @@ public class DashboardViewModel implements Initializable {
         return table.getSelectionModel().getFocusedIndex();
     }
     
-    private int getInventoryTableSelectedId(int index) {
+    private Product getSelectedProduct(int index) {
         Product product = (Product)this.productTableView.getItems().get(index);
-        return product.getId();
+        return product;
+    }
+    
+    @FXML
+    private void inventoryTableViewDetails(MouseEvent event) throws Exception {
+        if (this.productTableView.getSelectionModel().getSelectedItem() != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/ViewInventoryDetailsView.fxml"));
+            Parent viewInventoryDetails = fxmlLoader.load();
+            ViewInventoryDetailsViewModel viewInvetoryDetailsViewModel = fxmlLoader.getController();
+
+            viewInvetoryDetailsViewModel.show(this.getSelectedProduct(this.getSelectedItemIndex(this.productTableView)));
+        }
     }
     
     @FXML
     private void inventoryTableDelete(MouseEvent event) {
-        int id = this.getInventoryTableSelectedId(this.getSelectedItemIndex(this.productTableView));
-        
-        this.productController.deleteProduct(id);
-        this.populateProductsTable();
+        if (this.productTableView.getSelectionModel().getSelectedItem() != null) {
+            int id = this.getSelectedProduct(this.getSelectedItemIndex(this.productTableView)).getId();
+
+            this.productController.deleteProduct(id);
+            this.populateProductsTable();
+        }
     }
     
     public void show(Parent main, UserState userState) {
