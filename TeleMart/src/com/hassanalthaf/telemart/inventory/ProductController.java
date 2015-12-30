@@ -5,6 +5,9 @@
  */
 package com.hassanalthaf.telemart.inventory;
 
+import com.hassanalthaf.telemart.inventory.exceptions.ProductNotFoundException;
+import java.util.List;
+
 /**
  *
  * @author hassan
@@ -27,4 +30,15 @@ public class ProductController {
         
     }
     
+    public List<Product> fetchAllProducts() {
+        return this.productService.fetchAllProducts();
+    }
+    
+    public Product fetchProduct(int id) throws ProductNotFoundException {
+        return this.productService.fetchProduct(id);
+    }
+    
+    public void deleteProduct(int id) {
+        this.productService.delete(id);
+    }
 }

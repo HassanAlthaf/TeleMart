@@ -123,8 +123,8 @@ public class DashboardViewModel implements Initializable {
     
     private void populateProductsTable() {
         ObservableList<Product> products = this.productTableView.getItems();
-        
-        products.add(new Product("Samsung", "Galaxy A8", "Black", 75000.00, 10, "Specs"));
+        products.clear();
+        products.addAll(this.productController.fetchAllProducts());
     }
     
     public void menuItemClick(ActionEvent event) {
@@ -224,6 +224,28 @@ public class DashboardViewModel implements Initializable {
             this.addInventoryErrors.setText(exception.getMessage());
             this.addInventoryErrors.setOpacity(1);
         }
+    }
+    
+    @FXML
+    private void inventoryTableRefresh(MouseEvent event) {
+        this.populateProductsTable();
+    }
+    
+    private int getSelectedItemIndex(TableView table) {
+        return table.getSelectionModel().getFocusedIndex();
+    }
+    
+    private int getInventoryTableSelectedId(int index) {
+        Product product = (Product)this.productTableView.getItems().get(index);
+        return product.getId();
+    }
+    
+    @FXML
+    private void inventoryTableDelete(MouseEvent event) {
+        int id = this.getInventoryTableSelectedId(this.getSelectedItemIndex(this.productTableView));
+        
+        this.productController.deleteProduct(id);
+        this.populateProductsTable();
     }
     
     public void show(Parent main, UserState userState) {
