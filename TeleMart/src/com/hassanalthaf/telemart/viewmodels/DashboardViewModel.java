@@ -232,12 +232,8 @@ public class DashboardViewModel implements Initializable {
         this.populateProductsTable();
     }
     
-    private int getSelectedItemIndex(TableView table) {
-        return table.getSelectionModel().getFocusedIndex();
-    }
-    
-    private Product getSelectedProduct(int index) {
-        Product product = (Product)this.productTableView.getItems().get(index);
+    private Product getSelectedProduct() {
+        Product product = (Product)this.productTableView.getSelectionModel().getSelectedItem();
         return product;
     }
     
@@ -248,14 +244,14 @@ public class DashboardViewModel implements Initializable {
             Parent viewInventoryDetails = fxmlLoader.load();
             ViewInventoryDetailsViewModel viewInvetoryDetailsViewModel = fxmlLoader.getController();
 
-            viewInvetoryDetailsViewModel.show(this.getSelectedProduct(this.getSelectedItemIndex(this.productTableView)));
+            viewInvetoryDetailsViewModel.show(this.getSelectedProduct());
         }
     }
     
     @FXML
     private void inventoryTableDelete(MouseEvent event) {
         if (this.productTableView.getSelectionModel().getSelectedItem() != null) {
-            int id = this.getSelectedProduct(this.getSelectedItemIndex(this.productTableView)).getId();
+            int id = this.getSelectedProduct().getId();
 
             this.productController.deleteProduct(id);
             this.populateProductsTable();

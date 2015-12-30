@@ -48,7 +48,7 @@ class ProductValidator {
     }
     
     public void validateAvailableQuantity(int availableQuantity) throws InvalidArgumentException {
-        if (availableQuantity < 0 || availableQuantity > 999999999 || availableQuantity == 0) {
+        if (availableQuantity < 0 || availableQuantity > 999999999) {
             throw new InvalidArgumentException("Invalid quantity entered.");
         }
     }

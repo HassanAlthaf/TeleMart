@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +31,24 @@ public class ViewInventoryDetailsViewModel implements Initializable {
     @FXML
     private Parent viewInventoryDetails;
     
+    @FXML
+    private Label brand;
+    
+    @FXML
+    private Label model;
+    
+    @FXML
+    private Label colour;
+    
+    @FXML
+    private Label unitPrice;
+    
+    @FXML
+    private Label availableQuantity;
+    
+    @FXML
+    private Text specifications;
+    
     public ViewInventoryDetailsViewModel() {
         this.productController = new ProductController();
     }
@@ -42,7 +62,17 @@ public class ViewInventoryDetailsViewModel implements Initializable {
         stage.setTitle(Main.APPLICATION_TITLE);
         stage.setResizable(false);
         stage.setScene(scene);
+        this.loadData();
         stage.show();
+    }
+    
+    public void loadData() {
+        this.brand.setText(this.product.getBrand());
+        this.model.setText(this.product.getModel());
+        this.colour.setText(this.product.getColour());
+        this.unitPrice.setText(String.valueOf(this.product.getUnitPrice()));
+        this.availableQuantity.setText(String.valueOf(this.product.getAvailableQuantity()));
+        this.specifications.setText(this.product.getSpecifications());
     }
     
     @Override

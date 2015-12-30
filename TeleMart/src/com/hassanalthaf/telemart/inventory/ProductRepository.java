@@ -31,6 +31,8 @@ public class ProductRepository {
         Transaction transaction = session.beginTransaction();
         session.save(product);
         transaction.commit();
+        
+        session.close();
     }
     
     public Product fetchProduct(int id) throws ProductNotFoundException {
@@ -62,10 +64,11 @@ public class ProductRepository {
             
             Transaction transaction = session.beginTransaction();
             session.delete(product);
-            
-            session.flush();
             transaction.commit();
         } catch (ProductNotFoundException exception) {
+            session.close();
         }
+        
+        session.close();
     }
 }
