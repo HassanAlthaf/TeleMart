@@ -285,6 +285,11 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void customerTableRefresh(MouseEvent event) {
+        this.populateCustomersTable();
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
