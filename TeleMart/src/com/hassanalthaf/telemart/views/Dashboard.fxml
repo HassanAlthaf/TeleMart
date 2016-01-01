@@ -29,7 +29,7 @@
             <Menu mnemonicParsing="false" text="Customers">
               <items>
                 <MenuItem fx:id="addCustomerMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Add" />
-                  <MenuItem mnemonicParsing="false" text="Manage" />
+                  <MenuItem fx:id="manageCustomersMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Manage" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Orders">
@@ -121,6 +121,34 @@
             <TextField fx:id="addInventoryAvailableQuantity" layoutX="308.0" layoutY="235.0" styleClass="input-field" />
             <TextArea fx:id="addInventorySpecifications" layoutX="308.0" layoutY="272.0" prefHeight="70.0" prefWidth="167.0" styleClass="input-field" />
             <Button layoutX="490.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#addInventory" text="Add" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="manageCustomers" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+         <children>
+            <Label layoutX="206.0" layoutY="10.0" styleClass="title" text="Manage Customers" />
+            <TableView fx:id="customersTableView" layoutX="10.0" layoutY="46.0" prefHeight="272.0" prefWidth="580.0">
+              <columns>
+                  <TableColumn prefWidth="107.0" text="NIC Number">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="nicNumber" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="161.0" text="Membership Number">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="membershipNumber" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn minWidth="0.0" prefWidth="310.0" text="Name">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="name" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+            </TableView>
+            <Button layoutX="10.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
+            <Button layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Update" />
+            <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Delete" />
+            <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Refresh" />
          </children>
       </AnchorPane>
    </children>

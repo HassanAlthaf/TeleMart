@@ -6,6 +6,7 @@
 package com.hassanalthaf.telemart.viewmodels;
 
 import com.hassanalthaf.telemart.Main;
+import com.hassanalthaf.telemart.customers.Customer;
 import com.hassanalthaf.telemart.customers.CustomerController;
 import com.hassanalthaf.telemart.inventory.ProductController;
 import com.hassanalthaf.telemart.inventory.Product;
@@ -50,9 +51,11 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private AnchorPane addCustomer;
     
-    private AnchorPane currentPage;
+    @FXML
+    private AnchorPane addInventory;
     
-    private UserState userState;
+    @FXML
+    private AnchorPane manageCustomers;
     
     @FXML
     private TableView productTableView;
@@ -85,9 +88,6 @@ public class DashboardViewModel implements Initializable {
     private Label addCustomerErrors;
     
     @FXML
-    private AnchorPane addInventory;
-    
-    @FXML
     private Label addInventorySuccess;
     
     @FXML
@@ -111,9 +111,15 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private TextArea addInventorySpecifications;
     
-    private CustomerController customerController;
+    @FXML
+    private TableView customersTableView;
     
+    private CustomerController customerController;
     private ProductController productController;
+    private AnchorPane currentPage;
+    private UserState userState;
+    
+
     
     private void changePage(AnchorPane page) {
         this.currentPage.setOpacity(0);
@@ -126,6 +132,12 @@ public class DashboardViewModel implements Initializable {
         ObservableList<Product> products = this.productTableView.getItems();
         products.clear();
         products.addAll(this.productController.fetchAllProducts());
+    }
+    
+    public void populateCustomersTable() {
+        ObservableList<Customer> customers = this.customersTableView.getItems();
+        customers.clear();
+        customers.addAll(this.customerController.fetchAllCustomers());
     }
     
     public void menuItemClick(ActionEvent event) {
@@ -153,6 +165,10 @@ public class DashboardViewModel implements Initializable {
                 break;
             case "addInventoryMenuItem":
                 this.changePage(this.addInventory);
+                break;
+            case "manageCustomersMenuItem":
+                this.changePage(this.manageCustomers);
+                this.populateCustomersTable();
                 break;
             default:
                 this.changePage(this.home);

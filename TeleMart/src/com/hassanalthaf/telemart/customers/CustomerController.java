@@ -8,6 +8,7 @@ package com.hassanalthaf.telemart.customers;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -33,8 +34,6 @@ public class CustomerController {
             customer.setId(id);
             customer.setMembershipNumber(this.generateCustomerMembershipNumber(id));
             
-            System.out.println(id);
-            
             this.customerService.save(customer);
         }
     }
@@ -42,5 +41,9 @@ public class CustomerController {
     public int generateCustomerMembershipNumber(int id) {
         DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
         return Integer.parseInt(dateFormat.format(new Date()) + id);
+    }
+    
+    public List<Customer> fetchAllCustomers() {
+        return this.customerService.fetchAllCustomers();
     }
 }

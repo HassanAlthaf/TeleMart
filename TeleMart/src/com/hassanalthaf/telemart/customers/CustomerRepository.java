@@ -6,6 +6,7 @@
 package com.hassanalthaf.telemart.customers;
 
 import com.hassanalthaf.telemart.DatabaseDriver;
+import com.hassanalthaf.telemart.customers.exceptions.CustomerNotFoundException;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -39,6 +40,28 @@ public class CustomerRepository {
         Transaction transaction = session.beginTransaction();
         session.update(customer);
         transaction.commit();
+    }
+    
+    public List<Customer> fetchAll() {
+        Session session = this.databaseDriver.openSession();
+        
+        return session.createCriteria(Customer.class).list();
+    }
+    
+    public Customer fetchCustomer(int id) throws CustomerNotFoundException {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(Customer.class);
+        
+        criteria.add(Restrictions.eq("id", id));
+        
+        List<Customer> customers = criteria.list();
+        
+        if (customers.size() < 1) {
+            throw new CustomerNotFoundException();
+        }
+        
+        return customers.get(0);
     }
     
     public boolean isNicNumberTaken(String nicNumber) {
