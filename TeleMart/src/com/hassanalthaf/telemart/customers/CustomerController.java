@@ -46,4 +46,8 @@ public class CustomerController {
     public List<Customer> fetchAllCustomers() {
         return this.customerService.fetchAllCustomers();
     }
+    
+    public void deleteCustomer(int id) {
+        this.customerService.deleteCustomer(id);
+    }
 }

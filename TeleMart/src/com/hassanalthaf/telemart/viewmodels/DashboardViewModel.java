@@ -285,9 +285,24 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    private Customer getSelectedCustomer() {
+        Customer customer = (Customer)this.customersTableView.getSelectionModel().getSelectedItem();
+        return customer;
+    }
+    
     @FXML
     private void customerTableRefresh(MouseEvent event) {
         this.populateCustomersTable();
+    }
+    
+    @FXML
+    private void customerTableDelete(MouseEvent event) {
+        if(this.customersTableView.getSelectionModel().getSelectedItem() != null) {
+            int id = this.getSelectedCustomer().getId();
+            
+            this.customerController.deleteCustomer(id);
+            this.populateCustomersTable();
+        }
     }
     
     public void show(Parent main, UserState userState) {

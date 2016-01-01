@@ -35,4 +35,8 @@ public class CustomerService {
     public List<Customer> fetchAllCustomers() {
         return this.customerRepository.fetchAll();
     }
+    
+    public void deleteCustomer(int id) {
+        this.customerRepository.delete(id);
+    }
 }

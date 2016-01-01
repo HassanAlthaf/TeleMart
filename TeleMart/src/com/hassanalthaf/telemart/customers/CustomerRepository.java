@@ -79,4 +79,20 @@ public class CustomerRepository {
         
         return true;
     }
+    
+    public void delete(int id) {
+        Session session = this.databaseDriver.openSession();
+        
+        try {
+            Customer customer = this.fetchCustomer(id);
+            
+            Transaction transaction = session.beginTransaction();
+            session.delete(customer);
+            transaction.commit();
+        } catch (CustomerNotFoundException exception) {
+            session.close();
+        }
+        
+        session.close();
+    }
 }

@@ -147,7 +147,7 @@
             </TableView>
             <Button layoutX="10.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
             <Button layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Update" />
-            <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Delete" />
+            <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#customerTableDelete" prefWidth="75.0" text="Delete" />
             <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#customerTableRefresh" prefWidth="75.0" text="Refresh" />
          </children>
       </AnchorPane>
