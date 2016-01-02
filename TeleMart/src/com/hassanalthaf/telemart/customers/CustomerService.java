@@ -22,13 +22,18 @@ public class CustomerService {
     
     public int insertNewCustomer(Customer customer) throws Exception {
         
-        new CustomerValidator(customer);
+        new CustomerValidator(customer, false, null);
         
         return this.customerRepository.insert(customer);
         
     }
     
-    public void save(Customer customer) {
+    public void save(Customer customer) throws Exception {
+        
+        Customer originalCustomerData = this.customerRepository.fetchCustomer(customer.getId());
+        
+        new CustomerValidator(customer, true, originalCustomerData.getNicNumber());
+        
         this.customerRepository.update(customer);
     }
     

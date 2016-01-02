@@ -21,25 +21,26 @@ public class CustomerValidator {
     private Pattern nicNumberPattern = Pattern.compile("^[0-9]{9}[vVxX]$");
     private CustomerRepository customerRepository;
     
-    public CustomerValidator(Customer customer) throws Exception {
+    public CustomerValidator(Customer customer, boolean allowDuplicateNIC, String originalNIC) throws Exception {
         this.customerRepository = new CustomerRepository();
-        this.validateNicNumber(customer.getNicNumber());
+        this.validateNicNumber(customer.getNicNumber(), allowDuplicateNIC, originalNIC);
         this.validateName(customer.getName());
         this.validateContactNumber(customer.getContactNumber());
         this.validateAddress(customer.getAddress());
         this.validateEmail(customer.getEmailAddress());
     }
     
-    public void validateNicNumber(String nicNumber) throws InvalidFormatException, UniqueAttributeDuplicationException {
+    public void validateNicNumber(String nicNumber, boolean allowDuplicateNIC, String originalNIC) throws InvalidFormatException, UniqueAttributeDuplicationException {
         
         if (!this.nicNumberPattern.matcher(nicNumber).find()) {
             throw new InvalidFormatException("The NIC Number has an invalid format.");
         }
         
-        if (this.customerRepository.isNicNumberTaken(nicNumber)) {
-            throw new UniqueAttributeDuplicationException("The NIC Number is already taken.");
+        if(!allowDuplicateNIC && (nicNumber != originalNIC)) {
+            if (this.customerRepository.isNicNumberTaken(nicNumber)) {
+                throw new UniqueAttributeDuplicationException("The NIC Number is already taken.");
+            }
         }
-        
     }
     
     public void validateName(String name) throws InvalidLengthException {

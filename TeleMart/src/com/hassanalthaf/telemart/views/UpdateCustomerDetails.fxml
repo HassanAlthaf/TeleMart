@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="updateCustomerDetails" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.UpdateCustomerDetailsViewModel">
+    <children>
+        <Label layoutX="178.0" layoutY="10.0" styleClass="title" text="Update Customer Details" />
+        <Label fx:id="errors" alignment="CENTER" layoutX="10.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="errors-area" />
+        <Label fx:id="success" alignment="CENTER" layoutX="10.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="580.0" styleClass="success-area" />
+        <Label layoutX="126.0" layoutY="97.0" styleClass="input-label" text="NIC Number:" />
+        <Label layoutX="125.0" layoutY="131.0" styleClass="input-label" text="Membership Number:" />
+        <Label layoutX="125.0" layoutY="165.0" styleClass="input-label" text="Name:" />
+        <Label layoutX="126.0" layoutY="202.0" styleClass="input-label" text="Contact Number:" />
+        <Label layoutX="125.0" layoutY="239.0" styleClass="input-label" text="Email Address:" />
+        <Label layoutX="125.0" layoutY="297.0" styleClass="input-label" text="Address:" />
+        <TextField fx:id="nicNumber" layoutX="308.0" layoutY="93.0" styleClass="input-field" />
+        <TextField fx:id="membershipNumber" layoutX="308.0" layoutY="127.0" styleClass="input-field" />
+        <TextField fx:id="name" layoutX="308.0" layoutY="161.0" styleClass="input-field" />
+        <TextField fx:id="contactNumber" layoutX="308.0" layoutY="198.0" styleClass="input-field" />
+        <TextField fx:id="emailAddress" layoutX="308.0" layoutY="235.0" styleClass="input-field" />
+        <TextArea fx:id="address" layoutX="308.0" layoutY="272.0" prefHeight="70.0" prefWidth="167.0" styleClass="input-field" />
+        <Button layoutX="490.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update" />
+      <Label layoutX="125.0" layoutY="355.0" styleClass="input-label" text="Membership Status:" />
+      <ToggleButton fx:id="membershipStatus" layoutX="308.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#toggleButton" prefHeight="27.0" prefWidth="167.0" />
+    </children>
+</AnchorPane>

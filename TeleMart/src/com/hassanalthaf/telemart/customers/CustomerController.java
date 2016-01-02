@@ -50,4 +50,14 @@ public class CustomerController {
     public void deleteCustomer(int id) {
         this.customerService.deleteCustomer(id);
     }
+    
+    public void updateCustomer(Customer customer, boolean membershipStatus) throws Exception {
+        if (membershipStatus && customer.getMembershipNumber() == 0) {
+            customer.setMembershipNumber(this.generateCustomerMembershipNumber(customer.getId()));
+        } else if (!membershipStatus && customer.getMembershipNumber() != 0) {
+            customer.setMembershipNumber(0);
+        }
+        
+        this.customerService.save(customer);
+    }
 }

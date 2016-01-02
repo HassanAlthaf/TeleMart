@@ -96,3 +96,8 @@ Website: http://hassanalthaf.com
     -fx-padding: 8px;
     -fx-text-fill: #FFFFFF;
 }
+
+.toggle-button {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Lato-Regular';
+}

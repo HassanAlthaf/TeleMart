@@ -296,6 +296,26 @@ public class DashboardViewModel implements Initializable {
     }
     
     @FXML
+    private void customerTableUpdate(MouseEvent event) throws Exception {
+        if (this.customersTableView.getSelectionModel().getSelectedItem() != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/UpdateCustomerDetails.fxml"));
+            Parent updateCustomerDetails = fxmlLoader.load();
+            UpdateCustomerDetailsViewModel updateCustomerDetailsViewModel = fxmlLoader.getController();
+            updateCustomerDetailsViewModel.show(this.getSelectedCustomer(), this.customerController, this);
+        }
+    }
+    
+    @FXML
+    private void customerTableView(MouseEvent event) throws Exception {
+        if (this.customersTableView.getSelectionModel().getSelectedItem() != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/ViewCustomer.fxml"));
+            Parent viewCustomer = fxmlLoader.load();
+            ViewCustomerViewModel viewCustomerViewModel = fxmlLoader.getController();
+            viewCustomerViewModel.show(this.getSelectedCustomer());
+        }
+    }
+    
+    @FXML
     private void customerTableDelete(MouseEvent event) {
         if(this.customersTableView.getSelectionModel().getSelectedItem() != null) {
             int id = this.getSelectedCustomer().getId();
