@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate MAPPING DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+Program developed by Hassan Althaf.
+Copyright © 2015, Hassan Althaf.
+Website: http://hassanalthaf.com
+-->
+
+<hibernate-mapping>
+    <class name="com.hassanalthaf.telemart.orders.Order" table="orders">
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+        <property name="customerId" column="customer_id" type="int" />
+    </class>
+</hibernate-mapping>

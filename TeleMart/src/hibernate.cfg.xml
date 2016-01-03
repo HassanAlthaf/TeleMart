@@ -26,5 +26,7 @@ Website: http://hassanalthaf.com
         <mapping resource="com/hassanalthaf/telemart/users/User.hbm.xml"/>
         <mapping resource="com/hassanalthaf/telemart/customers/Customer.hbm.xml"/>
         <mapping resource="com/hassanalthaf/telemart/inventory/Product.hbm.xml"/>
+        <mapping resource="com/hassanalthaf/telemart/orders/Order.hbm.xml"/>
+        <mapping resource="com/hassanalthaf/telemart/orders/OrderItem.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
