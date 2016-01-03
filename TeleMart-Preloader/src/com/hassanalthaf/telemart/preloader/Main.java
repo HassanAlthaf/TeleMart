@@ -3,7 +3,7 @@
  * Copyright © 2015, Hassan Althaf.
  * Website: http://hassanalthaf.com
  */
-package telemart.preloader;
+package com.hassanalthaf.telemart.preloader;
 
 import javafx.application.Preloader;
 import javafx.application.Preloader.ProgressNotification;
@@ -18,11 +18,10 @@ import javafx.stage.Stage;
  *
  * @author hassan
  */
-public class TeleMart_Preloader extends Preloader {
-    
+public class Main extends Preloader {
     ProgressBar bar;
     Stage stage;
-    
+ 
     private Scene createPreloaderScene() {
         bar = new ProgressBar();
         BorderPane p = new BorderPane();
@@ -38,15 +37,14 @@ public class TeleMart_Preloader extends Preloader {
     }
     
     @Override
-    public void handleStateChangeNotification(StateChangeNotification scn) {
-        if (scn.getType() == StateChangeNotification.Type.BEFORE_START) {
+    public void handleProgressNotification(ProgressNotification pn) {
+        bar.setProgress(pn.getProgress());
+    }
+ 
+    @Override
+    public void handleStateChangeNotification(StateChangeNotification evt) {
+        if (evt.getType() == StateChangeNotification.Type.BEFORE_START) {
             stage.hide();
         }
     }
-    
-    @Override
-    public void handleProgressNotification(ProgressNotification pn) {
-        bar.setProgress(pn.getProgress());
-    }    
-    
 }

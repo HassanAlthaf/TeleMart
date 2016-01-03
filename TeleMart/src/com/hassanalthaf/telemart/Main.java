@@ -5,11 +5,7 @@
  */
 package com.hassanalthaf.telemart;
 
-import com.hassanalthaf.telemart.customers.Customer;
-import com.hassanalthaf.telemart.customers.CustomerService;
-import com.hassanalthaf.telemart.users.UserRepository;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,20 +19,24 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     public static final String APPLICATION_TITLE = "TeleMart - ERP System";
-    
+    private Parent root;
+    private Image favicon;
+
+    @Override
+    public void init() throws Exception {
+        this.root = FXMLLoader.load(getClass().getResource("/com/hassanalthaf/telemart/views/MainView.fxml"));
+        this.favicon = new Image("/com/hassanalthaf/telemart/views/images/icon.png");
+        super.init();
+    }
+      
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/MainView.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        Image image = new Image("com/hassanalthaf/telemart/views/images/icon.png");
+        Scene scene = new Scene(this.root);
         
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.getIcons().add(image);
+        stage.getIcons().add(this.favicon);
         stage.setTitle(Main.APPLICATION_TITLE);
-        stage.setOnCloseRequest(e -> Platform.exit());
         stage.show();
     }
     

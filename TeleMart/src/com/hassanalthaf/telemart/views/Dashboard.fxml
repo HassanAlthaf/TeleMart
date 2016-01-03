@@ -34,7 +34,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Orders">
               <items>
-                <MenuItem mnemonicParsing="false" text="Add" />
+                <MenuItem fx:id="addOrderMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Add" />
                   <MenuItem mnemonicParsing="false" text="Manage" />
               </items>
             </Menu>
@@ -149,6 +149,52 @@
             <Button layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#customerTableUpdate" prefWidth="75.0" text="Update" />
             <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#customerTableDelete" prefWidth="75.0" text="Delete" />
             <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#customerTableRefresh" prefWidth="75.0" text="Refresh" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addOrder" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+         <children>
+            <Pane layoutX="450.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="150.0" styleClass="orders-sidebar">
+               <children>
+                  <Label layoutX="27.0" layoutY="10.0" styleClass="title" text="Customer" />
+                  <Button layoutX="8.0" layoutY="52.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Select Customer" />
+                  <Button layoutX="8.0" layoutY="95.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Add Customer" />
+                  <Label layoutX="8.0" layoutY="139.0" styleClass="input-label" text="Selected:" />
+                  <Button disable="true" layoutX="8.0" layoutY="165.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="None" />
+                  <Button layoutX="8.0" layoutY="209.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Unselect" />
+                  <Button layoutX="8.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Submit" />
+               </children>
+            </Pane>
+            <Label layoutX="172.5" layoutY="10.0" styleClass="title" text="Add Order" />
+            <TableView fx:id="addOrdersTableView" layoutX="25.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0">
+              <columns>
+                    <TableColumn text="Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Quantity">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="quantity" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Unit Price">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="unitPrice" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Net Value">
+                        <cellFactory>
+                            <PropertyValueFactory property="totalValue" /> 
+                        </cellFactory>
+                    </TableColumn>
+              </columns>
+            </TableView>
+            <Button fx:id="addOrdersSelectProduct" layoutX="25.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Select Product" />
+            <Button layoutX="350.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Remove" />
+            <TextField fx:id="addOrdersQuantity" layoutX="160.0" layoutY="327.0" prefHeight="27.0" prefWidth="95.0" promptText="Quantity" styleClass="input-field" />
+            <Button layoutX="265.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Add" />
+            <Label fx:id="addOrderErrorsBox" alignment="CENTER" layoutX="25.0" layoutY="49.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="33.0" prefWidth="400.0" styleClass="errors-area" />
+            <Label fx:id="addOrdersSuccessBox" alignment="CENTER" layoutX="25.0" layoutY="49.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="400.0" styleClass="success-area" />
          </children>
       </AnchorPane>
    </children>

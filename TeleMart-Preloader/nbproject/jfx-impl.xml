@@ -4002,6 +4002,4 @@
     <target name="jfxbe-debug-noscript" depends="-set-fallback-no-javascript, jfxbe-debug"/>
 
     <target name="jfxbe-profile-noscript" depends="-set-fallback-no-javascript, jfxbe-profile"/>
-
-
 </project>

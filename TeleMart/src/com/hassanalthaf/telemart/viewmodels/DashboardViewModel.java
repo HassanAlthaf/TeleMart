@@ -38,7 +38,6 @@ import javafx.stage.Stage;
  * @author hassan
  */
 public class DashboardViewModel implements Initializable {
-    
     @FXML
     private Parent dashboard;
     
@@ -56,6 +55,9 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private AnchorPane manageCustomers;
+            
+    @FXML
+    private AnchorPane addOrder;
     
     @FXML
     private TableView productTableView;
@@ -114,6 +116,18 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private TableView customersTableView;
     
+    @FXML
+    private Label addOrdersSuccessBox;
+    
+    @FXML
+    private Label addOrdersErrorsBox;
+    
+    @FXML
+    private TextField addOrdersQuantity;
+    
+    @FXML
+    private TableView addOrdersTableView;
+    
     private CustomerController customerController;
     private ProductController productController;
     private AnchorPane currentPage;
@@ -169,6 +183,9 @@ public class DashboardViewModel implements Initializable {
             case "manageCustomersMenuItem":
                 this.changePage(this.manageCustomers);
                 this.populateCustomersTable();
+                break;
+            case "addOrderMenuItem":
+                this.changePage(this.addOrder);
                 break;
             default:
                 this.changePage(this.home);
@@ -350,6 +367,5 @@ public class DashboardViewModel implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.currentPage = this.home;
-    }    
-    
+    }
 }

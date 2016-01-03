@@ -101,3 +101,9 @@ Website: http://hassanalthaf.com
     -fx-text-fill: #FFFFFF;
     -fx-font-family: 'Lato-Regular';
 }
+
+.orders-sidebar {
+    -fx-background-color: #ECF0F1;
+    -fx-border-color: transparent transparent transparent #CBD0D3;
+    -fx-border-width: 1pt;
+}
