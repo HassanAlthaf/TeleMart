@@ -81,4 +81,16 @@ public class ProductRepository {
         
         session.close();
     }
+    
+    public List<Product> fetchExcluding(List<Integer> selectedProducts) {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(Product.class);
+        
+        for (int id : selectedProducts) {
+            criteria.add(Restrictions.not(Restrictions.eq("id", id)));
+        }
+        
+        return criteria.list();
+    }
 }

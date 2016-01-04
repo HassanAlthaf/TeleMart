@@ -6,6 +6,7 @@
 package com.hassanalthaf.telemart.orders;
 
 import com.hassanalthaf.telemart.customers.Customer;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +19,12 @@ public class Order {
     private Customer customer;
     private List<OrderItem> orderItems;
     
+    public Order() { }
+    
     public Order(int customerId) {
         this.setCustomerId(customerId);
     }
-    
+            
     public void setId(int id) {
         this.id = id;
     }

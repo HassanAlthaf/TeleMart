@@ -52,4 +52,8 @@ public class ProductService {
             return false;
         }
     }
+    
+    public List<Product> fetchExcluding(List<Integer> selectedProducts) {
+        return this.productRepository.fetchExcluding(selectedProducts);
+    }
 }

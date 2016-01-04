@@ -44,6 +44,10 @@ public class ProductController {
         return this.productService.fetchAllProducts();
     }
     
+    public List<Product> fetchExcluding(List<Integer> selectedProducts) {
+        return this.productService.fetchExcluding(selectedProducts);
+    }
+    
     public Product fetchProduct(int id) throws ProductNotFoundException {
         return this.productService.fetchProduct(id);
     }

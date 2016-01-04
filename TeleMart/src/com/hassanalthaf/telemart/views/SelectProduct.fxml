@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="selectProduct" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.SelectProductViewModel">
+    <children>
+        <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Select Product" />
+        <TableView fx:id="productTableView" layoutX="20.0" layoutY="50.0" prefHeight="300.0" prefWidth="560.0">
+            <columns>
+                <TableColumn prefWidth="117.0" text="Brand">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="brand" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="143.0" text="Model">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="model" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="86.0" text="Colour">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="colour" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="103.0" text="Unit Price">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="unitPrice" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="130.0" text="Available Quantity">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="availableQuantity" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>          
+        </TableView>
+        <Button layoutX="505.0" layoutY="355.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" onMouseClicked="#select"  text="Select" />
+        <Button layoutX="425.0" layoutY="355.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" onMouseClicked="#view" text="View" />
+    </children>
+</AnchorPane>

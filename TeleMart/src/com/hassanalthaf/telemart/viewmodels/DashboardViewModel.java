@@ -10,8 +10,12 @@ import com.hassanalthaf.telemart.customers.Customer;
 import com.hassanalthaf.telemart.customers.CustomerController;
 import com.hassanalthaf.telemart.inventory.ProductController;
 import com.hassanalthaf.telemart.inventory.Product;
+import com.hassanalthaf.telemart.orders.OrderItem;
+import com.hassanalthaf.telemart.orders.OrderState;
 import com.hassanalthaf.telemart.users.UserState;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -132,7 +136,7 @@ public class DashboardViewModel implements Initializable {
     private ProductController productController;
     private AnchorPane currentPage;
     private UserState userState;
-    
+    private OrderState orderState;
 
     
     private void changePage(AnchorPane page) {
@@ -342,6 +346,83 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void addOrdersSelectProduct(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/SelectProduct.fxml"));
+        Parent selectProduct = fxmlLoader.load();
+        SelectProductViewModel selectProductViewModel = fxmlLoader.getController();
+        selectProductViewModel.show(this, this.orderState.getSelectedProducts());
+    }
+    
+    public void selectProduct(Product product) {
+        this.orderState.select(product);
+        this.addOrdersSuccess("Product successfully selected!");
+    }
+    
+    private void addOrdersSuccess(String message) {
+        this.addOrdersErrorsBox.setOpacity(0);
+        this.addOrdersSuccessBox.setText(message);
+        this.addOrdersSuccessBox.setOpacity(1);
+    }
+    
+    private void addOrdersError(String message) {
+        this.addOrdersSuccessBox.setOpacity(0);
+        this.addOrdersErrorsBox.setText(message);
+        this.addOrdersErrorsBox.setOpacity(1);
+    }
+    
+    private OrderItem getSelectedOrderItem() {
+        return (OrderItem)this.addOrdersTableView.getSelectionModel().getSelectedItem();
+    }
+    
+    private void refreshAddOrderItemsTable() {
+        ObservableList<OrderItem> orderItems = this.addOrdersTableView.getItems();
+        orderItems.clear();
+        orderItems.addAll(this.orderState.getOrderItems());
+    }
+    
+    @FXML
+    private void addOrderItem(MouseEvent event) {
+        boolean valid = true;
+        
+        if (this.orderState.isProductSelected()) {
+            int quantity;
+
+            try {
+                quantity = Integer.parseInt(this.addOrdersQuantity.getText());
+            } catch (Exception exception) {
+                quantity = 0;
+                valid = false;
+            }
+
+            try {
+                this.orderState.setQuantity(quantity);
+            } catch (Exception exception) {
+                this.addOrdersError(exception.getMessage());
+                valid = false;
+            }
+            
+            if (valid) {
+                this.orderState.saveOrderItem();
+                this.refreshAddOrderItemsTable();
+                this.addOrdersSuccess("Successfully added product!");
+            }
+        } else {
+            this.addOrdersError("Please select a product!");
+        }
+    }
+    
+    @FXML
+    private void removeOrderItem(MouseEvent event) {
+        if (this.addOrdersTableView.getSelectionModel().getSelectedItem() != null) {
+            this.orderState.removeOrderItem(this.getSelectedOrderItem());
+            this.refreshAddOrderItemsTable();
+            this.addOrdersSuccess("Successfully removed product!");
+        } else {
+            this.addOrdersError("Select an item to remove from table.");
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
@@ -359,6 +440,7 @@ public class DashboardViewModel implements Initializable {
         mainStage.close();
         
         this.userState = userState;
+        this.orderState = new OrderState();
         
         this.customerController = new CustomerController();
         this.productController = new ProductController();
