@@ -162,6 +162,7 @@
                   <Button disable="true" layoutX="8.0" layoutY="165.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="None" />
                   <Button layoutX="8.0" layoutY="209.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Unselect" />
                   <Button layoutX="8.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Submit" />
+                  <Button layoutX="8.0" layoutY="281.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Reset" />
                </children>
             </Pane>
             <Label layoutX="172.5" layoutY="10.0" styleClass="title" text="Add Order" />

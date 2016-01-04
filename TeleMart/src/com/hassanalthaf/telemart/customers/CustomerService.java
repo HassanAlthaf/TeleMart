@@ -37,11 +37,24 @@ public class CustomerService {
         this.customerRepository.update(customer);
     }
     
+    public Customer fetch(int id) throws Exception {
+        return this.customerRepository.fetchCustomer(id);
+    }
+    
     public List<Customer> fetchAllCustomers() {
         return this.customerRepository.fetchAll();
     }
     
     public void deleteCustomer(int id) {
         this.customerRepository.delete(id);
+    }
+    
+    public boolean doesCustomerExist(int id) {
+        try {
+            this.fetch(id);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
     }
 }

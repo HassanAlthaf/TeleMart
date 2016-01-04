@@ -28,6 +28,14 @@ public class OrderItem {
         this.setQuantity(quantity);
     }
     
+    public int getId() {
+        return this.id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getProductId() {
         return this.productId;
     }

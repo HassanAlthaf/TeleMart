@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author hassan
  */
-class ProductService {
+public class ProductService {
     
     private ProductRepository productRepository;
     
@@ -42,5 +42,14 @@ class ProductService {
     
     public void delete(int id) {
         this.productRepository.delete(id);
+    }
+    
+    public boolean doesProductExist(int id) {
+        try {
+            this.productRepository.fetchProduct(id);       
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
     }
 }
