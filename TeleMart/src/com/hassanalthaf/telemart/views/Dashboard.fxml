@@ -156,11 +156,11 @@
             <Pane layoutX="450.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="150.0" styleClass="orders-sidebar">
                <children>
                   <Label layoutX="27.0" layoutY="10.0" styleClass="title" text="Customer" />
-                  <Button layoutX="8.0" layoutY="52.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Select Customer" />
+                  <Button layoutX="8.0" layoutY="52.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addOrdersSelectCustomer" prefWidth="135.0" text="Select Customer" />
                   <Button layoutX="8.0" layoutY="95.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Add Customer" />
                   <Label layoutX="8.0" layoutY="139.0" styleClass="input-label" text="Selected:" />
-                  <Button disable="true" layoutX="8.0" layoutY="165.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="None" />
-                  <Button layoutX="8.0" layoutY="209.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Unselect" />
+                  <Button fx:id="addOrdersSelectedCustomer" disable="true" layoutX="8.0" layoutY="165.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addOrdersViewSelectedCustomer" prefWidth="135.0" text="None" />
+                  <Button layoutX="8.0" layoutY="209.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addOrdersUnselectCustomer" prefWidth="135.0" text="Unselect" />
                   <Button layoutX="8.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Submit" />
                   <Button layoutX="8.0" layoutY="281.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Reset" />
                </children>
@@ -183,17 +183,17 @@
                             <PropertyValueFactory property="unitPrice" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="Net Price">
-                        <cellValueFactory>
+                    <TableColumn text="Net Value">
+                        <cellFactory>
                             <PropertyValueFactory property="totalValue" /> 
-                        </cellValueFactory>
+                        </cellFactory>
                     </TableColumn>
               </columns>
             </TableView>
             <Button fx:id="addOrdersSelectProduct" layoutX="25.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addOrdersSelectProduct" prefWidth="125.0" text="Select Product" />
-            <Button layoutX="350.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" onMouseClicked="#removeOrderItem" text="Remove" />
+            <Button layoutX="350.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Remove" />
             <TextField fx:id="addOrdersQuantity" layoutX="160.0" layoutY="327.0" prefHeight="27.0" prefWidth="95.0" promptText="Quantity" styleClass="input-field" />
-            <Button layoutX="265.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" onMouseClicked="#addOrderItem"  text="Add" />
+            <Button layoutX="265.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Add" />
             <Label fx:id="addOrdersErrorsBox" alignment="CENTER" layoutX="25.0" layoutY="49.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="33.0" prefWidth="400.0" styleClass="errors-area" />
             <Label fx:id="addOrdersSuccessBox" alignment="CENTER" layoutX="25.0" layoutY="49.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="400.0" styleClass="success-area" />
          </children>

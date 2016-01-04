@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -130,6 +131,9 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private TableView addOrdersTableView;
+    
+    @FXML
+    private Button addOrdersSelectedCustomer;
     
     private CustomerController customerController;
     private ProductController productController;
@@ -405,6 +409,7 @@ public class DashboardViewModel implements Initializable {
                 this.orderState.saveOrderItem();
                 this.refreshAddOrderItemsTable();
                 this.addOrdersSuccess("Successfully added product!");
+                this.addOrdersQuantity.setText("");
             }
         } else {
             this.addOrdersError("Please select a product!");
@@ -420,6 +425,39 @@ public class DashboardViewModel implements Initializable {
         } else {
             this.addOrdersError("Select an item to remove from table.");
         }
+    }
+    
+    public void setOrderCustomer(Customer customer) {
+        this.orderState.setCustomer(customer);
+        this.addOrdersSelectedCustomer.setText(customer.getNicNumber());
+        this.addOrdersSelectedCustomer.setDisable(false);
+        this.addOrdersSuccess("Successfully selected customer!");
+    }
+    
+    @FXML
+    private void addOrdersSelectCustomer(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/SelectCustomer.fxml"));
+        Parent selectCustomer = fxmlLoader.load();
+        SelectCustomerViewModel selectCustomerViewModel = fxmlLoader.getController();
+        
+        selectCustomerViewModel.show(this);
+    }
+    
+    @FXML
+    private void addOrdersViewSelectedCustomer(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/ViewCustomer.fxml"));
+        Parent viewCustomer = fxmlLoader.load();
+        ViewCustomerViewModel viewCustomerViewModel = fxmlLoader.getController();
+        
+        viewCustomerViewModel.show(this.orderState.getSelectedCustomer());
+    }
+    
+    @FXML
+    private void addOrdersUnselectCustomer(MouseEvent event) {
+        this.orderState.setCustomer((Customer)null);
+        this.addOrdersSelectedCustomer.setDisable(true);
+        this.addOrdersSelectedCustomer.setText("None");
+        this.addOrdersSuccess("Successfully un-selected customer!");
     }
     
     public void show(Parent main, UserState userState) {

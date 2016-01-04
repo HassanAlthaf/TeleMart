@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane id="AnchorPane" fx:id="selectCustomer" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.SelectCustomerViewModel">
+    <children>
+        <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Select Customer" />
+        <TableView fx:id="customerTableView" layoutX="20.0" layoutY="50.0" prefHeight="300.0" prefWidth="560.0">
+            <columns>
+                <TableColumn prefWidth="107.0" text="NIC Number">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nicNumber" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="161.0" text="Membership Number">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="membershipNumber" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="0.0" prefWidth="310.0" text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>    
+        </TableView>
+        <Button layoutX="505.0" layoutY="355.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" onMouseClicked="#select"  text="Select" />
+        <Button layoutX="425.0" layoutY="355.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" onMouseClicked="#view" text="View" />
+    </children>
+</AnchorPane>

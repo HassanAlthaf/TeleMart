@@ -5,6 +5,7 @@
  */
 package com.hassanalthaf.telemart.orders;
 
+import com.hassanalthaf.telemart.customers.Customer;
 import com.hassanalthaf.telemart.inventory.Product;
 import com.hassanalthaf.telemart.inventory.exceptions.InvalidArgumentException;
 import java.util.ArrayList;
@@ -84,5 +85,17 @@ public class OrderState {
         
         int index = this.selectedProducts.indexOf(orderItem.getProductId());
         this.selectedProducts.remove(index);
+    }
+    
+    public void setCustomer(Customer customer) {
+        this.order.setCustomer(customer);
+        
+        if(customer != null) {
+            this.order.setCustomerId(customer.getId());
+        }
+    }
+    
+    public Customer getSelectedCustomer() {
+        return this.order.getCustomer();
     }
 }
