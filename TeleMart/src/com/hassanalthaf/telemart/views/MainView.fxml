@@ -18,7 +18,7 @@
       <PasswordField fx:id="passwordBox" layoutX="380.0" layoutY="208.0" onKeyPressed="#loginEnter" promptText="Password" styleClass="login-field" />
       <Button layoutX="495.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#loginClick" text="Login" />
       <Label layoutX="45.0" layoutY="113.0" styleClass="content" text="Welcome to TeleMart's Enterprise&#10;Resource Planning System.&#10;Please enter your login credentials&#10;on the right so that we could verify&#10;your identity. Also, please do not&#10;share your login credentials with&#10;anyone or use another person's&#10;login credentials." textAlignment="CENTER" wrapText="true" />
-      <Label layoutX="220.0" layoutY="309.0" styleClass="content" text="© 2015, Hassan Althaf." />
+      <Label layoutX="196.0" layoutY="309.0" styleClass="content" text="© 2015 - 2016, Hassan Althaf." />
       <Label fx:id="errorBox" layoutX="380.0" layoutY="113.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="175.0" styleClass="error-box" textAlignment="CENTER" />
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ import com.hassanalthaf.telemart.customers.Customer;
 import com.hassanalthaf.telemart.customers.CustomerController;
 import com.hassanalthaf.telemart.inventory.ProductController;
 import com.hassanalthaf.telemart.inventory.Product;
+import com.hassanalthaf.telemart.orders.OrderController;
 import com.hassanalthaf.telemart.orders.OrderItem;
 import com.hassanalthaf.telemart.orders.OrderState;
 import com.hassanalthaf.telemart.users.UserState;
@@ -137,6 +138,7 @@ public class DashboardViewModel implements Initializable {
     
     private CustomerController customerController;
     private ProductController productController;
+    private OrderController orderController;
     private AnchorPane currentPage;
     private UserState userState;
     private OrderState orderState;
@@ -452,12 +454,35 @@ public class DashboardViewModel implements Initializable {
         viewCustomerViewModel.show(this.orderState.getSelectedCustomer());
     }
     
+    private void resetSelectedButton() {
+        this.addOrdersSelectedCustomer.setDisable(true);
+        this.addOrdersSelectedCustomer.setText("None");
+    }
+    
     @FXML
     private void addOrdersUnselectCustomer(MouseEvent event) {
         this.orderState.setCustomer((Customer)null);
-        this.addOrdersSelectedCustomer.setDisable(true);
-        this.addOrdersSelectedCustomer.setText("None");
+        this.resetSelectedButton();
         this.addOrdersSuccess("Successfully un-selected customer!");
+    }
+    
+    @FXML
+    private void addOrdersReset(MouseEvent event) {
+        this.orderState = new OrderState();
+        this.resetSelectedButton();
+        this.addOrdersQuantity.setText("");
+        this.addOrdersTableView.getItems().clear();
+        this.addOrdersSuccess("Order has been successfully reset!");
+    }
+    
+    @FXML
+    private void submitOrder(MouseEvent event) {
+        try {
+            this.orderController.save(this.orderState.getOrder());
+            this.addOrdersSuccess("Successfully created order!");
+        } catch (Exception exception) {
+            this.addOrdersError(exception.getMessage());
+        }
     }
     
     public void show(Parent main, UserState userState) {
@@ -481,6 +506,7 @@ public class DashboardViewModel implements Initializable {
         
         this.customerController = new CustomerController();
         this.productController = new ProductController();
+        this.orderController = new OrderController();
     }
     
     @Override

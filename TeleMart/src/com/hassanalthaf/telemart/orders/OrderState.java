@@ -18,7 +18,6 @@ import java.util.List;
 public class OrderState {
     private Order order;
     private OrderItem orderItem;
-    private int quantity;
     private boolean productSelected = false;
     private List<Integer> selectedProducts;
     
@@ -41,11 +40,10 @@ public class OrderState {
             throw new InvalidArgumentException("You cannot order more units than available.");
         }
         
-        this.quantity = quantity;
         this.orderItem.setQuantity(quantity);
     }
     
-    public List<OrderItem> saveOrderItem() {
+    public void saveOrderItem() {
         
         List<OrderItem> orderItems = this.order.getOrderItems();
         
@@ -59,10 +57,6 @@ public class OrderState {
         this.order.setOrderItems(orderItems);
         this.orderItem = new OrderItem();
         this.productSelected = false;
-        this.quantity = 0;
-        
-        
-        return orderItems;
     }
     
     public List<Integer> getSelectedProducts() {
@@ -97,5 +91,9 @@ public class OrderState {
     
     public Customer getSelectedCustomer() {
         return this.order.getCustomer();
+    }
+    
+    public Order getOrder() {
+        return this.order;
     }
 }
