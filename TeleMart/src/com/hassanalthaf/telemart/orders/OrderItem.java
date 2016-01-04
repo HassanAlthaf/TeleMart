@@ -77,6 +77,6 @@ public class OrderItem {
     }
     
     public String getTotalValue() {
-        return String.valueOf(this.getQuantity() * this.getUnitPrice());
+        return String.format("%.2f", this.getQuantity() * this.getUnitPrice());
     }
 }

@@ -15,7 +15,6 @@ import com.hassanalthaf.telemart.orders.OrderState;
 import com.hassanalthaf.telemart.users.UserState;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
