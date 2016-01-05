@@ -5,7 +5,8 @@
  */
 package com.hassanalthaf.telemart.orders;
 
-import java.util.List;
+import com.hassanalthaf.telemart.inventory.Product;
+import com.hassanalthaf.telemart.inventory.ProductService;
 
 /**
  *
@@ -13,16 +14,21 @@ import java.util.List;
  */
 public class OrderItemService {
     private OrderItemRepository orderItemRepository;
+    private ProductService productService;
     
     public OrderItemService() {
         this.orderItemRepository = new OrderItemRepository();
+        this.productService = new ProductService();
     }
     
-    public void saveAll(List<OrderItem> orderItems) throws Exception {
-        for (OrderItem item : orderItems) {
-            new OrderItemValidator(item);
-            
-            this.orderItemRepository.insert(item);
-        }
+    public void validate(OrderItem orderItem) throws Exception {
+        Product product = this.productService.fetchProduct(orderItem.getProductId());
+        product.setAvailableQuantity(product.getAvailableQuantity() - orderItem.getQuantity());
+        this.productService.update(product);
+        new OrderItemValidator(orderItem);
+    }
+    
+    public void save(OrderItem orderItem)  {
+        this.orderItemRepository.insert(orderItem);
     }
 }

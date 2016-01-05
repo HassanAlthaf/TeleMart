@@ -12,9 +12,15 @@ package com.hassanalthaf.telemart.orders;
 public class OrderService {
     private OrderRepository orderRepository;
     
-    public int save(Order order) throws Exception {
+    public OrderService() {
+        this.orderRepository = new OrderRepository();
+    }
+    
+    public void validate(Order order) throws Exception {
         new OrderValidator(order);
-        
+    }
+    
+    public int save(Order order) {
         return this.orderRepository.insert(order);
     }
     

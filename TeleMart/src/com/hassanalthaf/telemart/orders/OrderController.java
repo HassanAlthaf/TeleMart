@@ -19,8 +19,17 @@ public class OrderController {
     }
     
     public void save(Order order) throws Exception {
-        this.orderService.save(order);
+        this.orderService.validate(order);
         
-        this.orderItemService.saveAll(order.getOrderItems());
+        int id = this.orderService.save(order);
+        
+        for (OrderItem orderItem : order.getOrderItems()) {
+           orderItem.setOrderId(id);
+           this.orderItemService.validate(orderItem);
+        }
+        
+        for (OrderItem orderItem : order.getOrderItems()) {
+            this.orderItemService.save(orderItem);
+        }
     }
 }

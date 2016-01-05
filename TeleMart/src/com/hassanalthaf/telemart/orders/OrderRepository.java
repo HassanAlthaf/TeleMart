@@ -20,6 +20,10 @@ import org.hibernate.criterion.Restrictions;
 public class OrderRepository {
     private DatabaseDriver databaseDriver;
     
+    public OrderRepository() {
+        this.databaseDriver = new DatabaseDriver();
+    }
+    
     public Order fetch(int id) throws NotFoundException {
         Session session = this.databaseDriver.openSession();
         
