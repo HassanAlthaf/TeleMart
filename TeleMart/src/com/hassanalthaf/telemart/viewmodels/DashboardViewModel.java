@@ -478,8 +478,7 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private void submitOrder(MouseEvent event) {
         try {
-            System.out.println("Clicked!");
-            this.orderController.save(this.orderState.getOrder());
+            this.orderController.save(this.orderState.getOrder(), this.userState.getUser().getId());
             this.addOrdersSuccess("Successfully created order!");
         } catch (Exception exception) {
             exception.printStackTrace();

@@ -5,6 +5,8 @@
  */
 package com.hassanalthaf.telemart.orders;
 
+import java.time.Instant;
+
 /**
  *
  * @author hassan
@@ -18,7 +20,9 @@ public class OrderController {
         this.orderItemService = new OrderItemService();
     }
     
-    public void save(Order order) throws Exception {
+    public void save(Order order, int userId) throws Exception {
+        order.setUserId(userId);
+        order.setDate(Instant.now().getEpochSecond());
         this.orderService.validate(order);
         
         int id = this.orderService.save(order);

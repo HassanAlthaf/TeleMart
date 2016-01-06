@@ -6,7 +6,6 @@
 package com.hassanalthaf.telemart.orders;
 
 import com.hassanalthaf.telemart.customers.Customer;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +15,9 @@ import java.util.List;
 public class Order {
     private int id;
     private int customerId;
+    private int userId;
+    private long date;
+    
     private Customer customer;
     private List<OrderItem> orderItems;
     
@@ -40,6 +42,22 @@ public class Order {
     public int getCustomerId() {
         return this.customerId;
     }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
+    public int getUserId() {
+        return this.userId;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+        
+    public long getDate() {
+        return this.date;
+    }    
     
     public void setCustomer(Customer customer) {
         this.customer = customer;

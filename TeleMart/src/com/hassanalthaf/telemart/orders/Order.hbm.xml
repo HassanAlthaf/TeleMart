@@ -12,5 +12,7 @@ Website: http://hassanalthaf.com
             <generator class="native" />
         </id>
         <property name="customerId" column="customer_id" type="int" />
+        <property name="userId" column="user_id" type="int" />
+        <property name="date" column="date" type="long" />
     </class>
 </hibernate-mapping>

@@ -24,8 +24,20 @@ public class UserRepository {
         this.databaseDriver = new DatabaseDriver();
     }
     
-    public User fetch(int id) {
-        return this.databaseDriver.openSession().get(User.class, id);
+    public User fetch(int id) throws UserNotFoundException {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(User.class);
+        
+        criteria.add(Restrictions.eq("id", id));
+        
+        List<User> user = criteria.list();
+        
+        if(user.size() < 1) {
+            throw new UserNotFoundException();
+        }
+        
+        return user.get(0);
     }
     
     public List<User> fetchAll() {
