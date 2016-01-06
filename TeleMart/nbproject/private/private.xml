@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/viewmodels/DashboardViewModel.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderController.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderState.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/Order.java</file>
+        </group>
     </open-files>
 </project-private>

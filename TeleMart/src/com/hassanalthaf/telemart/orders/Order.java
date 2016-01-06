@@ -17,6 +17,7 @@ public class Order {
     private int customerId;
     private int userId;
     private long date;
+    private int hasDiscount = 0;
     
     private Customer customer;
     private List<OrderItem> orderItems;
@@ -57,7 +58,15 @@ public class Order {
         
     public long getDate() {
         return this.date;
-    }    
+    }
+    
+    public void setHasDiscount(int value) {
+        this.hasDiscount = value;
+    }
+    
+    public int getHasDiscount() {
+        return this.hasDiscount;
+    }
     
     public void setCustomer(Customer customer) {
         this.customer = customer;

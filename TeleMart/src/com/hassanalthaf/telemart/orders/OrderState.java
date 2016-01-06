@@ -20,6 +20,10 @@ public class OrderState {
     private OrderItem orderItem;
     private boolean productSelected = false;
     private List<Integer> selectedProducts;
+    private boolean customerHasMembership = false;
+    private final static double DISCOUNT_RATE = 0.95;
+    private double totalValue = 0;
+    private double discountedAmount = 0;
     
     public OrderState() {
         this.order = new Order();
@@ -53,10 +57,19 @@ public class OrderState {
         
         orderItems.add(this.orderItem);
         
+        this.incrementBillValue(this.orderItem.getQuantity() * this.orderItem.getUnitPrice());
         this.selectedProducts.add(this.orderItem.getProductId());
         this.order.setOrderItems(orderItems);
         this.orderItem = new OrderItem();
         this.productSelected = false;
+    }
+    
+    public OrderItem getOrderItem() {
+        return this.orderItem;
+    }
+    
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
     }
     
     public List<Integer> getSelectedProducts() {
@@ -77,16 +90,22 @@ public class OrderState {
         
         this.order.setOrderItems(orderItems);
         
+        this.decrementBillValue(orderItem.getQuantity() * orderItem.getUnitPrice());
         int index = this.selectedProducts.indexOf(orderItem.getProductId());
         this.selectedProducts.remove(index);
     }
     
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Customer customer, boolean isNull) {
         this.order.setCustomer(customer);
         
-        if(customer != null) {
+        if(!isNull) {
             this.order.setCustomerId(customer.getId());
+            this.setCustomerHasMembership(customer.hasMembership());
+        } else {
+            this.setCustomerHasMembership(false);
         }
+        
+        
     }
     
     public Customer getSelectedCustomer() {
@@ -95,5 +114,49 @@ public class OrderState {
     
     public Order getOrder() {
         return this.order;
+    }
+    
+    public void incrementBillValue(double value) {
+        if (this.customerHasMembership) {
+            double newAmount = value * OrderState.DISCOUNT_RATE;
+            this.discountedAmount += (value - newAmount);
+            this.totalValue += newAmount;
+        } else {
+            this.totalValue += value;
+        }
+    }
+    
+    public void decrementBillValue(double value) {
+        if (this.customerHasMembership) {
+            double newAmount = value * OrderState.DISCOUNT_RATE;
+            this.discountedAmount -= (value - newAmount);
+            this.totalValue -= newAmount;
+        } else {
+            this.totalValue -= value;
+        }
+    }
+    
+    public void setCustomerHasMembership(boolean hasMembership) {
+        if(hasMembership && !this.customerHasMembership) {
+            double newValue = this.totalValue * OrderState.DISCOUNT_RATE;
+            this.discountedAmount = (this.totalValue - newValue);
+            this.totalValue = newValue;
+            this.order.setHasDiscount(1);
+        } else if (!hasMembership && this.customerHasMembership) {
+            this.totalValue += this.discountedAmount;
+            this.discountedAmount = 0;
+            
+            this.order.setHasDiscount(0);
+        }
+        
+        this.customerHasMembership = hasMembership;
+    }
+    
+    public double getBillValue() {
+        return this.totalValue;
+    }
+    
+    public double getDiscountedAmount() {
+        return this.discountedAmount;
     }
 }

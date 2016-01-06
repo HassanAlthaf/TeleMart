@@ -136,6 +136,12 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private Button addOrdersSelectedCustomer;
     
+    @FXML
+    private Label totalBillValue;
+    
+    @FXML
+    private Label discount;
+    
     private CustomerController customerController;
     private ProductController productController;
     private OrderController orderController;
@@ -386,6 +392,10 @@ public class DashboardViewModel implements Initializable {
         orderItems.addAll(this.orderState.getOrderItems());
     }
     
+    private void updateTotalBillValue(double value) {
+        
+    }
+    
     @FXML
     private void addOrderItem(MouseEvent event) {
         boolean valid = true;
@@ -409,6 +419,7 @@ public class DashboardViewModel implements Initializable {
             
             if (valid) {
                 this.orderState.saveOrderItem();
+                this.refreshBillValues();
                 this.refreshAddOrderItemsTable();
                 this.addOrdersSuccess("Successfully added product!");
                 this.addOrdersQuantity.setText("");
@@ -422,6 +433,7 @@ public class DashboardViewModel implements Initializable {
     private void removeOrderItem(MouseEvent event) {
         if (this.addOrdersTableView.getSelectionModel().getSelectedItem() != null) {
             this.orderState.removeOrderItem(this.getSelectedOrderItem());
+            this.refreshBillValues();
             this.refreshAddOrderItemsTable();
             this.addOrdersSuccess("Successfully removed product!");
         } else {
@@ -430,9 +442,10 @@ public class DashboardViewModel implements Initializable {
     }
     
     public void setOrderCustomer(Customer customer) {
-        this.orderState.setCustomer(customer);
+        this.orderState.setCustomer(customer, false);
         this.addOrdersSelectedCustomer.setText(customer.getNicNumber());
         this.addOrdersSelectedCustomer.setDisable(false);
+        this.refreshBillValues();
         this.addOrdersSuccess("Successfully selected customer!");
     }
     
@@ -461,8 +474,9 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private void addOrdersUnselectCustomer(MouseEvent event) {
-        this.orderState.setCustomer((Customer)null);
+        this.orderState.setCustomer((Customer)null, true);
         this.resetSelectedButton();
+        this.refreshBillValues();
         this.addOrdersSuccess("Successfully un-selected customer!");
     }
     
@@ -484,6 +498,11 @@ public class DashboardViewModel implements Initializable {
             exception.printStackTrace();
             this.addOrdersError(exception.getMessage());
         }
+    }
+    
+    public void refreshBillValues() {
+        this.totalBillValue.setText(String.format("%.2f", this.orderState.getBillValue()));
+        this.discount.setText(String.format("%.2f", this.orderState.getDiscountedAmount()));
     }
     
     public void show(Parent main, UserState userState) {

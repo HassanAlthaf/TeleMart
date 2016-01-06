@@ -14,5 +14,6 @@ Website: http://hassanalthaf.com
         <property name="customerId" column="customer_id" type="int" />
         <property name="userId" column="user_id" type="int" />
         <property name="date" column="date" type="long" />
+        <property name="hasDiscount" column="has_discount" type="int" />
     </class>
 </hibernate-mapping>
