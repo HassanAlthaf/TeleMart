@@ -39,6 +39,15 @@ public class OrderItemRepository {
         return orderItems.get(0);
     }
     
+    public List<OrderItem> fetchByOrderId(int id) {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(OrderItem.class);
+        criteria.add(Restrictions.eq("orderId", id));
+        
+        return criteria.list();
+    }
+    
     public List<OrderItem> fetchAll() {
         Session session = this.databaseDriver.openSession();
         

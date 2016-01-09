@@ -10,9 +10,11 @@ import com.hassanalthaf.telemart.customers.Customer;
 import com.hassanalthaf.telemart.customers.CustomerController;
 import com.hassanalthaf.telemart.inventory.ProductController;
 import com.hassanalthaf.telemart.inventory.Product;
+import com.hassanalthaf.telemart.orders.Order;
 import com.hassanalthaf.telemart.orders.OrderController;
 import com.hassanalthaf.telemart.orders.OrderItem;
 import com.hassanalthaf.telemart.orders.OrderState;
+import com.hassanalthaf.telemart.users.UserRanks;
 import com.hassanalthaf.telemart.users.UserState;
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +65,9 @@ public class DashboardViewModel implements Initializable {
             
     @FXML
     private AnchorPane addOrder;
+    
+    @FXML
+    private AnchorPane manageOrders;
     
     @FXML
     private TableView productTableView;
@@ -142,6 +147,9 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private Label discount;
     
+    @FXML
+    private TableView manageOrdersTableView;
+    
     private CustomerController customerController;
     private ProductController productController;
     private OrderController orderController;
@@ -150,11 +158,21 @@ public class DashboardViewModel implements Initializable {
     private OrderState orderState;
 
     
-    private void changePage(AnchorPane page) {
-        this.currentPage.setOpacity(0);
-        this.currentPage = page;
-        this.currentPage.toFront();
-        this.currentPage.setOpacity(1);
+    private void changePage(AnchorPane page, int[] allowedRanks) {
+        boolean allowed = false;
+        
+        for (int rank : allowedRanks) {
+            if (rank == this.userState.getUser().getRank()) {
+                allowed = true;
+            }
+        }
+        
+        if (allowed) {
+            this.currentPage.setOpacity(0);
+            this.currentPage = page;
+            this.currentPage.toFront();
+            this.currentPage.setOpacity(1);
+        }
     }
     
     public void populateProductsTable() {
@@ -181,30 +199,36 @@ public class DashboardViewModel implements Initializable {
         
         String id = clickedItem.getId();
         
-        switch (id) {
-            case "homeMenuItem":
-                this.changePage(this.home);
-                break;
-            case "viewInventoryMenuItem":
-                this.changePage(this.viewInventory);
-                this.populateProductsTable();
-                break;
-            case "addCustomerMenuItem":
-                this.changePage(this.addCustomer);
-                break;
-            case "addInventoryMenuItem":
-                this.changePage(this.addInventory);
-                break;
-            case "manageCustomersMenuItem":
-                this.changePage(this.manageCustomers);
-                this.populateCustomersTable();
-                break;
-            case "addOrderMenuItem":
-                this.changePage(this.addOrder);
-                break;
-            default:
-                this.changePage(this.home);
-                break;
+        if (this.userState.getUser() != null) {
+            switch (id) {
+                case "homeMenuItem":
+                    this.changePage(this.home, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    break;
+                case "viewInventoryMenuItem":
+                    this.changePage(this.viewInventory, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    this.populateProductsTable();
+                    break;
+                case "addCustomerMenuItem":
+                    this.changePage(this.addCustomer, new int[]{UserRanks.CASHIER.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    break;
+                case "addInventoryMenuItem":
+                    this.changePage(this.addInventory, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    break;
+                case "manageCustomersMenuItem":
+                    this.changePage(this.manageCustomers, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    this.populateCustomersTable();
+                    break;
+                case "addOrderMenuItem":
+                    this.changePage(this.addOrder, new int[]{UserRanks.CASHIER.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    break;
+                case "manageOrdersMenuItem":
+                    this.changePage(this.manageOrders, new int[]{UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    this.populateManageOrdersTable();
+                    break;
+                default:
+                    this.changePage(this.home, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    break;
+            }
         }
     }
     
@@ -527,6 +551,16 @@ public class DashboardViewModel implements Initializable {
         this.customerController = new CustomerController();
         this.productController = new ProductController();
         this.orderController = new OrderController();
+    }
+    
+    private void populateManageOrdersTable() {
+        try {
+            ObservableList<Order> orders = this.manageOrdersTableView.getItems();
+            orders.clear();
+            orders.addAll(this.orderController.fetchAll());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
     
     @Override

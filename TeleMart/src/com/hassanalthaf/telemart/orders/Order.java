@@ -6,6 +6,9 @@
 package com.hassanalthaf.telemart.orders;
 
 import com.hassanalthaf.telemart.customers.Customer;
+import com.hassanalthaf.telemart.users.User;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +23,7 @@ public class Order {
     private int hasDiscount = 0;
     
     private Customer customer;
+    private User operator;
     private List<OrderItem> orderItems;
     
     public Order() { }
@@ -56,8 +60,10 @@ public class Order {
         this.date = date;
     }
         
-    public long getDate() {
-        return this.date;
+    public String getDate() {
+        Date date = new Date(this.date * 1000L);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM YYYY");
+        return simpleDateFormat.format(date);
     }
     
     public void setHasDiscount(int value) {
@@ -82,5 +88,37 @@ public class Order {
     
     public List<OrderItem> getOrderItems() {
         return this.orderItems;
+    }
+    
+    public void setUser(User user) {
+        this.operator = user;
+    }
+    
+    public User getUser() {
+        return this.operator;
+    }
+    
+    public String getOperatorName() {
+        return this.operator.getUsername();
+    }
+    
+    public String getCustomerNIC() {
+        return this.customer.getNicNumber();
+    }
+    
+    public String getBillValue() {
+        double discountRate = 1;
+        double total = 0;
+        
+        if (this.hasDiscount == 1) {
+            discountRate = 0.95;
+        }
+        
+        for (int iterator = 0; iterator < this.orderItems.size(); iterator++) {
+            total += (this.orderItems.get(iterator).getQuantity() * this.orderItems.get(iterator).getUnitPrice()) * discountRate;
+        }
+
+        
+        return String.format("%.2f", total);
     }
 }

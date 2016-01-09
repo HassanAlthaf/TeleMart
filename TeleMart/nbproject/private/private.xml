@@ -6,7 +6,13 @@
             <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/viewmodels/DashboardViewModel.java</file>
             <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderController.java</file>
             <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderState.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderRepository.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/views/Dashboard.fxml</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderItem.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderService.java</file>
             <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/Order.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderItemRepository.java</file>
+            <file>file:/Users/hassan/NetBeansProjects/TeleMart/TeleMart/src/com/hassanalthaf/telemart/orders/OrderItemService.java</file>
         </group>
     </open-files>
 </project-private>

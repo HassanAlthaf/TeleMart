@@ -35,7 +35,7 @@
             <Menu mnemonicParsing="false" text="Orders">
               <items>
                 <MenuItem fx:id="addOrderMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Add" />
-                  <MenuItem mnemonicParsing="false" text="Manage" />
+                  <MenuItem fx:id="manageOrdersMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Manage" />
               </items>
             </Menu>
             <Menu fx:id="userMenu" mnemonicParsing="false" text="User">
@@ -151,7 +151,7 @@
             <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#customerTableRefresh" prefWidth="75.0" text="Refresh" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="addOrder" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+      <AnchorPane fx:id="addOrder" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
          <children>
             <Pane layoutX="450.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="150.0" styleClass="orders-sidebar">
                <children>
@@ -199,6 +199,42 @@
             <Label fx:id="addOrdersSuccessBox" alignment="CENTER" layoutX="25.0" layoutY="40.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="400.0" styleClass="success-area" />
             <Label layoutX="25.0" layoutY="294.0" styleClass="input-label" text="Total Bill Value:" />
             <Label fx:id="totalBillValue" alignment="CENTER_RIGHT" layoutX="145.0" layoutY="294.0" prefHeight="20.0" prefWidth="280.0" styleClass="input-label" text="0.00" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="manageOrders" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+         <children>
+            <Label layoutX="224.0" layoutY="10.0" styleClass="title" text="Manage Orders" />
+            <TableView fx:id="manageOrdersTableView" layoutX="14.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="572.0">
+                <columns>
+                    <TableColumn text="Bill Number">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Date">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="date" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Operator Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="operatorName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Customer NIC">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="customerNIC" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Bill Value">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="billValue" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            <Button layoutX="14.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
+            <Button layoutX="99.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Undo" />
          </children>
       </AnchorPane>
    </children>

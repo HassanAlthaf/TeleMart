@@ -6,6 +6,7 @@
 package com.hassanalthaf.telemart.orders;
 
 import java.time.Instant;
+import java.util.List;
 
 /**
  *
@@ -35,5 +36,9 @@ public class OrderController {
         for (OrderItem orderItem : order.getOrderItems()) {
             this.orderItemService.save(orderItem);
         }
+    }
+    
+    public List<Order> fetchAll() throws Exception {
+        return this.orderService.fetchAll();
     }
 }

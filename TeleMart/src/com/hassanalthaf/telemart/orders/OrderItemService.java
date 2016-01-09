@@ -7,6 +7,7 @@ package com.hassanalthaf.telemart.orders;
 
 import com.hassanalthaf.telemart.inventory.Product;
 import com.hassanalthaf.telemart.inventory.ProductService;
+import java.util.List;
 
 /**
  *
@@ -30,5 +31,21 @@ public class OrderItemService {
     
     public void save(OrderItem orderItem)  {
         this.orderItemRepository.insert(orderItem);
+    }
+    
+    public List<OrderItem> fetchByOrderId(int orderId) {
+        List<OrderItem> orderItems = this.orderItemRepository.fetchByOrderId(orderId);
+        
+        for (int iterator = 0; iterator < orderItems.size(); iterator++) {
+            OrderItem orderItem = orderItems.get(iterator);
+            
+            try {
+                orderItem.setProduct(this.productService.fetchProduct(orderItem.getProductId()));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+        
+        return orderItems;
     }
 }
