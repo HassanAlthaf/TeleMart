@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:controller="com.hassanalthaf.telemart.preloader.PreloaderViewModel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" styleClass="main" stylesheets="@css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="173.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/loader.GIF" />
+         </image>
+      </ImageView>
+      <Label layoutX="126.0" layoutY="14.0" styleClass="title" text="TeleMart" />
+      <Label fx:id="progressText" alignment="CENTER" layoutY="189.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" styleClass="status-label" text="Initializing..." />
+   </children>
+</AnchorPane>

@@ -19,7 +19,6 @@ import com.hassanalthaf.telemart.users.UserState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -537,6 +536,16 @@ public class DashboardViewModel implements Initializable {
         this.discount.setText(String.format("%.2f", this.orderState.getDiscountedAmount()));
     }
     
+    private void populateManageOrdersTable() {
+        try {
+            ObservableList<Order> orders = this.manageOrdersTableView.getItems();
+            orders.clear();
+            orders.addAll(this.orderController.fetchAll());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
@@ -544,7 +553,6 @@ public class DashboardViewModel implements Initializable {
         stage.setScene(scene);
         stage.setTitle(Main.APPLICATION_TITLE);
         stage.setResizable(false);
-        stage.setOnCloseRequest(e -> Platform.exit());
         
         this.userMenu.setText(userState.getUser().getUsername());
         
@@ -559,16 +567,6 @@ public class DashboardViewModel implements Initializable {
         this.customerController = new CustomerController();
         this.productController = new ProductController();
         this.orderController = new OrderController();
-    }
-    
-    private void populateManageOrdersTable() {
-        try {
-            ObservableList<Order> orders = this.manageOrdersTableView.getItems();
-            orders.clear();
-            orders.addAll(this.orderController.fetchAll());
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
     }
     
     @Override

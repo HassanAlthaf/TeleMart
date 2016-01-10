@@ -5,7 +5,9 @@
  */
 package com.hassanalthaf.telemart;
 
+import com.hassanalthaf.telemart.viewmodels.MainViewModel;
 import javafx.application.Application;
+import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,12 +23,18 @@ public class Main extends Application {
     public static final String APPLICATION_TITLE = "TeleMart - ERP System";
     private Parent root;
     private Image favicon;
+    private MainViewModel mainViewModel;
 
     @Override
     public void init() throws Exception {
+        notifyPreloader(new Preloader.ProgressNotification(0));
         this.root = FXMLLoader.load(getClass().getResource("/com/hassanalthaf/telemart/views/MainView.fxml"));
+        notifyPreloader(new Preloader.ProgressNotification(0));
         this.favicon = new Image("/com/hassanalthaf/telemart/views/images/icon.png");
+        notifyPreloader(new Preloader.ProgressNotification(0));
         DatabaseDriver.getInstance();
+        notifyPreloader(new Preloader.ProgressNotification(0));
+        Thread.sleep(250);
         super.init();
     }
       
@@ -47,5 +55,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }
