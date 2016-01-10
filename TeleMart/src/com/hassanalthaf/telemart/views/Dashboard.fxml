@@ -213,7 +213,7 @@
                     </TableColumn>
                     <TableColumn text="Date">
                         <cellValueFactory>
-                            <PropertyValueFactory property="date" />
+                            <PropertyValueFactory property="formattedDate" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn text="Operator Name">

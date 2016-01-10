@@ -46,10 +46,10 @@ public class OrderService {
     public List<Order> fetchAll() throws Exception {
         List<Order> orders = this.orderRepository.fetchAll();
 
-        for (int iterator = 0; iterator < orders.size(); iterator++) {
-            orders.get(iterator).setCustomer(this.customerRepository.fetchCustomer(orders.get(iterator).getCustomerId()));
-            orders.get(iterator).setOrderItems(this.orderItemService.fetchByOrderId(orders.get(iterator).getId()));
-            orders.get(iterator).setUser(this.userRepository.fetch(orders.get(iterator).getUserId()));
+        for (Order order : orders) {
+            order.setCustomer(this.customerRepository.fetchCustomer(order.getCustomerId()));
+            order.setOrderItems(this.orderItemService.fetchByOrderId(order.getId()));
+            order.setUser(this.userRepository.fetch(order.getUserId()));
         }
         
         return orders;

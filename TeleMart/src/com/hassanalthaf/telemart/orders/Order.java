@@ -59,8 +59,12 @@ public class Order {
     public void setDate(long date) {
         this.date = date;
     }
+    
+    public long getDate() {
+        return this.date;
+    }
         
-    public String getDate() {
+    public String getFormattedDate() {
         Date date = new Date(this.date * 1000L);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM YYYY");
         return simpleDateFormat.format(date);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <!--
 Program developed by Hassan Althaf.
 Copyright © 2015, Hassan Althaf.
@@ -11,11 +11,11 @@ Website: http://hassanalthaf.com
         <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>
-        <property name="hibernate.connecton.driver_class">
-            com.mysql.jdbc.Driver
-        </property>
         <property name="hibernate.connection.url">
             jdbc:mysql://127.0.0.1:3306/telemart
+        </property>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.jdbc.Driver
         </property>
         <property name="hibernate.connection.username">
             root
@@ -23,6 +23,17 @@ Website: http://hassanalthaf.com
         <property name="hibernate.connection.password">
             php123
         </property>
+        
+        <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>        
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.idle_test_period">60</property>
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.max_size">100</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.timeout">0</property>
+        <property name="hibernate.c3p0.acquireRetryAttempts">1</property>
+        <property name="hibernate.c3p0.acquireRetryDelay">250</property>
+        
         <mapping resource="com/hassanalthaf/telemart/users/User.hbm.xml"/>
         <mapping resource="com/hassanalthaf/telemart/customers/Customer.hbm.xml"/>
         <mapping resource="com/hassanalthaf/telemart/inventory/Product.hbm.xml"/>

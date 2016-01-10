@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate MAPPING DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <!--
 Program developed by Hassan Althaf.
 Copyright © 2015, Hassan Althaf.
@@ -14,5 +14,6 @@ Website: http://hassanalthaf.com
         <property name="productId" column="product_id" type="int" />
         <property name="orderId" column="order_id" type="int" />
         <property name="quantity" column="quantity" type="int" />
+        <property name="unitPrice" column="unit_price" type="double" />
     </class>
 </hibernate-mapping>

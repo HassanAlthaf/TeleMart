@@ -442,6 +442,9 @@ public class DashboardViewModel implements Initializable {
             }
             
             if (valid) {
+                OrderItem orderItem = this.orderState.getOrderItem();
+                orderItem.setUnitPrice(orderItem.getProduct().getUnitPrice());
+                this.orderState.setOrderItem(orderItem);
                 this.orderState.saveOrderItem();
                 this.refreshBillValues();
                 this.refreshAddOrderItemsTable();
@@ -515,6 +518,11 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private void submitOrder(MouseEvent event) {
+        if (!this.orderState.isCustomerSelected()) {
+            this.addOrdersError("You need to select a customer!");
+            return;
+        }
+        
         try {
             this.orderController.save(this.orderState.getOrder(), this.userState.getUser().getId());
             this.addOrdersSuccess("Successfully created order!");

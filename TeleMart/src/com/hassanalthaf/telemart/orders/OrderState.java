@@ -24,6 +24,7 @@ public class OrderState {
     private final static double DISCOUNT_RATE = 0.95;
     private double totalValue = 0;
     private double discountedAmount = 0;
+    private boolean isCustomerSelected = false;
     
     public OrderState() {
         this.order = new Order();
@@ -101,11 +102,11 @@ public class OrderState {
         if(!isNull) {
             this.order.setCustomerId(customer.getId());
             this.setCustomerHasMembership(customer.hasMembership());
+            this.isCustomerSelected = true;
         } else {
+            this.isCustomerSelected = false;
             this.setCustomerHasMembership(false);
         }
-        
-        
     }
     
     public Customer getSelectedCustomer() {
@@ -158,5 +159,9 @@ public class OrderState {
     
     public double getDiscountedAmount() {
         return this.discountedAmount;
+    }
+    
+    public boolean isCustomerSelected() {
+        return this.isCustomerSelected;
     }
 }

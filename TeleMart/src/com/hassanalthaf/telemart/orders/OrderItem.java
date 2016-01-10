@@ -17,6 +17,7 @@ public class OrderItem {
     private int id;
     private int productId;
     private int orderId;
+    private double unitPrice; 
     private Product product;
     private IntegerProperty quantity = new SimpleIntegerProperty();
     
@@ -73,7 +74,11 @@ public class OrderItem {
     }
     
     public double getUnitPrice() {
-        return this.product.getUnitPrice();
+        return this.unitPrice;
+    }
+    
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
     
     public String getTotalValue() {
