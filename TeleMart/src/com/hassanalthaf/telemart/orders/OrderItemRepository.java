@@ -21,7 +21,7 @@ public class OrderItemRepository {
     private DatabaseDriver databaseDriver;
     
     public OrderItemRepository() {
-        this.databaseDriver = new DatabaseDriver();
+        this.databaseDriver = DatabaseDriver.getInstance();
     }
     
     public OrderItem fetch(int id) throws NotFoundException {

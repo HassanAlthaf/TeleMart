@@ -12,14 +12,23 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class DatabaseDriver {
-    final private StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder().configure().build();
-    final SessionFactory sessionFactory;
+    private final static StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder().configure().build();
+    private static SessionFactory sessionFactory;
+    private static DatabaseDriver databaseDriver;
     
-    public DatabaseDriver() {
-        this.sessionFactory = new MetadataSources(this.standardServiceRegistry).buildMetadata().buildSessionFactory();
+    private DatabaseDriver() {
+        DatabaseDriver.sessionFactory = new MetadataSources(DatabaseDriver.standardServiceRegistry).buildMetadata().buildSessionFactory();
     }
     
-    public Session openSession() {
-        return this.sessionFactory.openSession();
+    public static DatabaseDriver getInstance() {
+        if (DatabaseDriver.databaseDriver == null) {
+            DatabaseDriver.databaseDriver = new DatabaseDriver();
+        }
+        
+        return DatabaseDriver.databaseDriver;
+    }
+    
+    public static Session openSession() {
+        return DatabaseDriver.sessionFactory.openSession();
     }
 }

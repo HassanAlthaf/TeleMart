@@ -22,7 +22,7 @@ public class ProductRepository {
     private DatabaseDriver databaseDriver;
     
     public ProductRepository() {
-        this.databaseDriver = new DatabaseDriver();
+        this.databaseDriver = DatabaseDriver.getInstance();
     }
     
     public void insertProduct(Product product) {

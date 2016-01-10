@@ -21,7 +21,7 @@ public class UserRepository {
     private DatabaseDriver databaseDriver;
     
     public UserRepository() {
-        this.databaseDriver = new DatabaseDriver();
+        this.databaseDriver = DatabaseDriver.getInstance();
     }
     
     public User fetch(int id) throws UserNotFoundException {

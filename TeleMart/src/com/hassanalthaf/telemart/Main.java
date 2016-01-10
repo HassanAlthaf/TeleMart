@@ -26,6 +26,7 @@ public class Main extends Application {
     public void init() throws Exception {
         this.root = FXMLLoader.load(getClass().getResource("/com/hassanalthaf/telemart/views/MainView.fxml"));
         this.favicon = new Image("/com/hassanalthaf/telemart/views/images/icon.png");
+        DatabaseDriver.getInstance();
         super.init();
     }
       

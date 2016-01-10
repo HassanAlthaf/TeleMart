@@ -21,7 +21,7 @@ public class CustomerRepository {
     private DatabaseDriver databaseDriver;
     
     public CustomerRepository() {
-        this.databaseDriver = new DatabaseDriver();
+        this.databaseDriver = DatabaseDriver.getInstance();
     }
     
     public int insert(Customer customer) {
