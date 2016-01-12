@@ -8,9 +8,11 @@ package com.hassanalthaf.telemart.viewmodels;
 import com.hassanalthaf.telemart.Main;
 import com.hassanalthaf.telemart.customers.Customer;
 import com.hassanalthaf.telemart.orders.Order;
+import com.hassanalthaf.telemart.orders.OrderItem;
 import com.hassanalthaf.telemart.users.User;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,8 +54,15 @@ public class ViewOrderViewModel implements Initializable {
         stage.setResizable(false);
         
         this.date.setText(this.order.getFormattedDate());
+        this.populateOrderItemsTable();
         
         stage.show();
+    }
+    
+    private void populateOrderItemsTable() {
+        ObservableList<OrderItem> list = this.orderItems.getItems();
+        list.clear();
+        list.addAll(this.order.getOrderItems());
     }
     
     @FXML
