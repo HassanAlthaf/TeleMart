@@ -233,7 +233,7 @@
                     </TableColumn>
                 </columns>
             </TableView>
-            <Button layoutX="14.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="View" />
+            <Button layoutX="14.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#manageOrderView" mnemonicParsing="false" prefWidth="75.0" text="View" />
             <Button layoutX="99.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="75.0" text="Undo" />
          </children>
       </AnchorPane>

@@ -6,8 +6,6 @@
 package com.hassanalthaf.telemart.orders;
 
 import com.hassanalthaf.telemart.inventory.Product;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  *
@@ -19,7 +17,7 @@ public class OrderItem {
     private int orderId;
     private double unitPrice; 
     private Product product;
-    private IntegerProperty quantity = new SimpleIntegerProperty();
+    private int quantity;
     
     public OrderItem() { }
     
@@ -62,11 +60,11 @@ public class OrderItem {
     }
     
     public int getQuantity() {
-        return this.quantity.get();
+        return this.quantity;
     }
     
     public void setQuantity(int quantity) {
-        this.quantity.set(quantity);
+        this.quantity = quantity;
     }
     
     public String getName() {

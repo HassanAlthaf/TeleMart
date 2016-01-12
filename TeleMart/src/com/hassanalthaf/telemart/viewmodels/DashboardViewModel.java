@@ -546,6 +546,19 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void manageOrderView(MouseEvent event) throws Exception {
+        if (this.manageOrdersTableView.getSelectionModel().getSelectedItem() != null) {
+            Order order = (Order)this.manageOrdersTableView.getSelectionModel().getSelectedItem();
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/ViewOrder.fxml"));
+            Parent viewOrder = fxmlLoader.load();
+            ViewOrderViewModel viewOrderViewModel = fxmlLoader.getController();
+            
+            viewOrderViewModel.show(order);
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         

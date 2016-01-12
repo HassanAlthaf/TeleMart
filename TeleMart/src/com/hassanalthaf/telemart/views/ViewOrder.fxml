@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane id="AnchorPane" fx:id="viewOrder" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.ViewOrderViewModel">
+    <children>
+        <Label layoutX="207.0" layoutY="10.0" styleClass="title" text="View Order Details" />
+        <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#viewCustomer" text="Customer" />
+        <Button layoutX="108.0" layoutY="52.0" mnemonicParsing="false" text="Operator" />
+        <Label fx:id="date" alignment="CENTER_RIGHT" layoutX="196.0" layoutY="60.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="390.0" />
+        <TableView fx:id="orderItems" layoutX="14.0" layoutY="100.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="572.0">
+            <columns>
+                <TableColumn text="Product Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Quantity">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="quantity" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Unit Price">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="unitPrice" /> 
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Total Value">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="totalValue" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Button layoutX="520.0" layoutY="356.0" mnemonicParsing="false" text="Refund" />
+        <Button layoutX="460.0" layoutY="356.0" mnemonicParsing="false" text="View" />
+    </children>
+</AnchorPane>

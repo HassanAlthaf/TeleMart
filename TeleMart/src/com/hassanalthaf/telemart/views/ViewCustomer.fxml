@@ -16,7 +16,7 @@
       <Label layoutX="14.0" layoutY="152.0" styleClass="input-label" text="Contact Number:" />
       <Label layoutX="14.0" layoutY="182.0" styleClass="input-label" text="Email Address:" />
       <Label layoutX="14.0" layoutY="239.0" styleClass="input-label" text="Address:" />
-      <Label layoutX="48.0" layoutY="10.0" styleClass="title" text="View Customer Details" />
+      <Label layoutX="39.0" layoutY="10.0" styleClass="title" text="View Customer Details" />
       <Label fx:id="nicNumber" alignment="CENTER_RIGHT" layoutX="186.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="100.0" />
       <Label fx:id="membershipNumber" alignment="CENTER_RIGHT" layoutX="186.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="100.0" />
       <Label fx:id="name" alignment="CENTER_RIGHT" layoutX="186.0" layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="100.0" />
