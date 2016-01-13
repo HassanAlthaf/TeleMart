@@ -71,4 +71,12 @@ public class OrderItemRepository {
         session.update(orderItem);
         transaction.commit();
     }
+    
+    public void delete(OrderItem orderItem) {
+        Session session = this.databaseDriver.openSession();
+        
+        Transaction transaction = session.beginTransaction();
+        session.delete(orderItem);
+        transaction.commit();
+    }
 }

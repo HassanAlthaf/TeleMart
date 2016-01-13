@@ -559,6 +559,19 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void undoOrder(MouseEvent event) throws Exception {
+        if (this.manageOrdersTableView.getSelectionModel().getSelectedItem() != null) {
+            Order order = (Order)this.manageOrdersTableView.getSelectionModel().getSelectedItem();
+            
+            order = this.orderController.fetch(order.getId());
+            
+            this.orderController.delete(order);
+            
+            this.populateManageOrdersTable();
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         

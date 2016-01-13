@@ -62,4 +62,12 @@ public class OrderRepository {
         session.update(order);
         transaction.commit();
     }
+    
+    public void remove(Order order) {
+        Session session = this.databaseDriver.openSession();
+        
+        Transaction transaction = session.beginTransaction();
+        session.delete(order);
+        transaction.commit();
+    }
 }

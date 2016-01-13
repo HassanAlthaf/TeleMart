@@ -34,6 +34,10 @@ public class OrderService {
         return this.orderRepository.insert(order);
     }
     
+    public void remove(Order order) {
+        this.orderRepository.remove(order);
+    }
+    
     public boolean doesOrderExist(int id) {
         try {
             this.orderRepository.fetch(id);
@@ -41,6 +45,16 @@ public class OrderService {
         } catch (Exception exception) {
             return false;
         }
+    }
+    
+    public Order fetch(int id) throws Exception {
+        Order order = this.orderRepository.fetch(id);
+        
+        order.setCustomer(this.customerRepository.fetchCustomer(order.getCustomerId()));
+        order.setOrderItems(this.orderItemService.fetchByOrderId(order.getId()));
+        order.setUser(this.userRepository.fetch(order.getUserId()));
+        
+        return order;
     }
     
     public List<Order> fetchAll() throws Exception {

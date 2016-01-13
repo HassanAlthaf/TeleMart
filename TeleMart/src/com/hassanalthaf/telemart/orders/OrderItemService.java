@@ -48,4 +48,11 @@ public class OrderItemService {
         
         return orderItems;
     }
+    
+    public void refundItem(OrderItem orderItem) throws Exception {
+        this.orderItemRepository.delete(orderItem);
+        Product product = this.productService.fetchProduct(orderItem.getProductId());
+        product.setAvailableQuantity(product.getAvailableQuantity() + orderItem.getQuantity());
+        this.productService.update(product);
+    }
 }

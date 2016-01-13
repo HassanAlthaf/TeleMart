@@ -13,7 +13,7 @@
         <Label layoutX="207.0" layoutY="10.0" styleClass="title" text="View Order Details" />
         <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#viewCustomer" text="Customer" />
         <Button layoutX="108.0" layoutY="52.0" mnemonicParsing="false" text="Operator" />
-        <Label fx:id="date" alignment="CENTER_RIGHT" layoutX="196.0" layoutY="60.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="390.0" />
+        <Label fx:id="date" alignment="CENTER_RIGHT" layoutX="461.0" layoutY="60.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="125.0" />
         <TableView fx:id="orderItems" layoutX="14.0" layoutY="100.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="572.0">
             <columns>
                 <TableColumn text="Product Name">
@@ -38,7 +38,12 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <Button layoutX="520.0" layoutY="356.0" mnemonicParsing="false" text="Refund" />
-        <Button layoutX="460.0" layoutY="356.0" mnemonicParsing="false" text="View" />
+        <Button layoutX="520.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#refundOrderItem" text="Refund" />
+      <Label fx:id="successBox" alignment="CENTER" layoutX="191.0" layoutY="52.0" opacity="0.0" prefHeight="33.0" prefWidth="260.0" styleClass="success-area" />
+      <Label fx:id="errorsBox" alignment="CENTER" layoutX="191.0" layoutY="52.0" opacity="0.0" prefHeight="33.0" prefWidth="260.0" styleClass="errors-area" />
+      <Label layoutX="14.0" layoutY="348.0" text="Total Value:" />
+      <Label layoutX="14.0" layoutY="364.0" text="Discount Value:" />
+      <Label fx:id="totalValue" alignment="CENTER_RIGHT" layoutX="130.0" layoutY="348.0" prefHeight="17.0" prefWidth="170.0" />
+      <Label fx:id="discountValue" alignment="CENTER_RIGHT" layoutX="130.0" layoutY="364.0" prefWidth="170.0" />
     </children>
 </AnchorPane>

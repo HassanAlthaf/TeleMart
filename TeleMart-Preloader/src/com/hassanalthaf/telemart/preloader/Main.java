@@ -46,15 +46,17 @@ public class Main extends Preloader {
     public void handleProgressNotification(ProgressNotification progressNotification) {}
  
     @Override
-    public void handleStateChangeNotification(StateChangeNotification stateChangeNotification) {}
+    public void handleStateChangeNotification(StateChangeNotification stateChangeNotification) {
+        if (stateChangeNotification.getType() == StateChangeNotification.Type.BEFORE_START) {
+            this.stage.hide();
+        }
+    }
  
     @Override
     public void handleApplicationNotification(PreloaderNotification preloaderNotification) {
         if (preloaderNotification instanceof ProgressNotification) {
             this.preloaderViewModel.updateProgressText(this.MESSAGES[this.counter]);
             counter++;
-        } else if (preloaderNotification instanceof StateChangeNotification) {
-            stage.hide();
         }
     }  
 }

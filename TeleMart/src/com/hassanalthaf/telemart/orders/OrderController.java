@@ -38,6 +38,18 @@ public class OrderController {
         }
     }
     
+    public Order fetch(int id) throws Exception {
+        return this.orderService.fetch(id);
+    }
+    
+    public void delete(Order order) throws Exception {
+        for (OrderItem orderItem : order.getOrderItems()) {
+            this.orderItemService.refundItem(orderItem);
+        }
+        
+        this.orderService.remove(order);
+    }     
+    
     public List<Order> fetchAll() throws Exception {
         return this.orderService.fetchAll();
     }
