@@ -28,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -67,6 +68,9 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private AnchorPane manageOrders;
+    
+    @FXML
+    private AnchorPane addUser;
     
     @FXML
     private TableView productTableView;
@@ -149,6 +153,39 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private TableView manageOrdersTableView;
     
+    @FXML
+    private Label addUserSuccess;
+    
+    @FXML
+    private Label addUserErrors;
+    
+    @FXML
+    private TextField addUserNICNumber;
+    
+    @FXML
+    private TextField addUserFullName;
+    
+    @FXML
+    private TextField addUserEmail;
+    
+    @FXML
+    private TextField addUserUsername;
+    
+    @FXML
+    private TextField addUserPassword;
+    
+    @FXML
+    private TextField addUserAddress;
+    
+    @FXML
+    private TextField addUserContactNumber;
+    
+    @FXML
+    private TextField addUserSalary;
+    
+    @FXML
+    private ChoiceBox addUserRank;
+    
     private CustomerController customerController;
     private ProductController productController;
     private OrderController orderController;
@@ -228,6 +265,10 @@ public class DashboardViewModel implements Initializable {
                     break;
                 case "logoutMenuItem":
                     this.logout();
+                    break;
+                case "addUserMenuItem":
+                    this.changePage(this.addUser, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    this.initializeAddOrder();
                     break;
                 default:
                     this.changePage(this.home, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
@@ -589,6 +630,19 @@ public class DashboardViewModel implements Initializable {
             mainViewModel.show();
         } catch (Exception exception) {
             
+        }
+    }
+    
+    @FXML
+    private void addUser(MouseEvent event) {
+        
+    }
+    
+    private void initializeAddOrder() {
+        this.addUserRank.getItems().addAll("Cashier", "Sales Executive");
+        
+        if (this.userState.getUser().getRank() == UserRanks.ADMINISTRATOR.getValue()) {
+            this.addUserRank.getItems().addAll("Manager", "Administrator");
         }
     }
     
