@@ -40,7 +40,7 @@
             </Menu>
             <Menu fx:id="userMenu" mnemonicParsing="false" text="User">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Logout" />
               </items>
             </Menu>
         </menus>
@@ -233,8 +233,8 @@
                     </TableColumn>
                 </columns>
             </TableView>
-            <Button layoutX="14.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#manageOrderView" mnemonicParsing="false" prefWidth="75.0" text="View" />
-            <Button layoutX="99.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#undoOrder" mnemonicParsing="false" prefWidth="75.0" text="Undo" />
+            <Button layoutX="14.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#manageOrderView" prefWidth="75.0" text="View" />
+            <Button layoutX="99.0" layoutY="324.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#undoOrder" prefWidth="75.0" text="Undo" />
          </children>
       </AnchorPane>
    </children>

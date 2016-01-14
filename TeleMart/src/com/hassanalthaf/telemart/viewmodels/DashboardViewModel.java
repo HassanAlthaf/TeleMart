@@ -155,6 +155,7 @@ public class DashboardViewModel implements Initializable {
     private AnchorPane currentPage;
     private UserState userState;
     private OrderState orderState;
+    private Stage stage;
 
     
     private void changePage(AnchorPane page, int[] allowedRanks) {
@@ -163,6 +164,7 @@ public class DashboardViewModel implements Initializable {
         for (int rank : allowedRanks) {
             if (rank == this.userState.getUser().getRank()) {
                 allowed = true;
+                break;
             }
         }
         
@@ -223,6 +225,9 @@ public class DashboardViewModel implements Initializable {
                 case "manageOrdersMenuItem":
                     this.changePage(this.manageOrders, new int[]{UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
                     this.populateManageOrdersTable();
+                    break;
+                case "logoutMenuItem":
+                    this.logout();
                     break;
                 default:
                     this.changePage(this.home, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
@@ -572,6 +577,21 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    private void logout() {
+        try {
+            this.userState.logout();
+            this.stage.close();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/MainView.fxml"));
+            Parent mainWindow = fxmlLoader.load();
+            MainViewModel mainViewModel = fxmlLoader.getController();
+
+            mainViewModel.show();
+        } catch (Exception exception) {
+            
+        }
+    }
+    
     public void show(Parent main, UserState userState) {
         Scene scene = new Scene(this.dashboard);
         
@@ -593,6 +613,8 @@ public class DashboardViewModel implements Initializable {
         this.customerController = new CustomerController();
         this.productController = new ProductController();
         this.orderController = new OrderController();
+        
+        this.stage = stage;
     }
     
     @Override

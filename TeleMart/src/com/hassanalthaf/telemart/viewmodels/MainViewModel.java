@@ -5,6 +5,7 @@
  */
 package com.hassanalthaf.telemart.viewmodels;
 
+import com.hassanalthaf.telemart.Main;
 import com.hassanalthaf.telemart.users.UserController;
 import com.hassanalthaf.telemart.users.UserLoginResponseModes;
 import com.hassanalthaf.telemart.users.UserState;
@@ -15,12 +16,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -86,6 +89,16 @@ public class MainViewModel implements Initializable {
         }
         
         this.errorBox.setOpacity(1);
+    }
+    
+    public void show() {
+        Scene scene = new Scene(this.mainWindow);
+        
+        Stage stage = new Stage();
+        stage.setTitle(Main.APPLICATION_TITLE);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
     
     private void openDashboard() throws IOException {
