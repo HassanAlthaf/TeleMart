@@ -207,6 +207,12 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private MenuBar menuBar;
     
+    @FXML
+    private Button viewInventoryUpdate;
+    
+    @FXML
+    private Button viewInventoryDelete;
+    
     private CustomerController customerController;
     private ProductController productController;
     private OrderController orderController;
@@ -275,7 +281,7 @@ public class DashboardViewModel implements Initializable {
                     this.changePage(this.addCustomer, new int[]{UserRanks.CASHIER.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
                     break;
                 case "addInventoryMenuItem":
-                    this.changePage(this.addInventory, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    this.changePage(this.addInventory, new int[]{UserRanks.CASHIER.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
                     break;
                 case "manageCustomersMenuItem":
                     this.changePage(this.manageCustomers, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
@@ -658,7 +664,7 @@ public class DashboardViewModel implements Initializable {
 
             mainViewModel.show();
         } catch (Exception exception) {
-            
+            exception.printStackTrace();
         }
     }
     
@@ -785,14 +791,21 @@ public class DashboardViewModel implements Initializable {
         
         int userRank = this.userState.getUser().getRank();
         
-        if (userRank < UserRanks.MANAGER.getValue()) {
-            this.menuBar.getMenus().remove(3);
-            this.menuBar.getMenus().remove(4);
+        ObservableList<Menu> menus = this.menuBar.getMenus();
+        
+        if (userRank == UserRanks.CASHIER.getValue()) {
+            menus.remove(4);
+            
+        } else if (userRank == UserRanks.SALES_EXECUTIVE.getValue()) {
+            menus.remove(2);
+            menus.remove(3);
+            this.viewInventoryUpdate.setDisable(true);
+            this.viewInventoryDelete.setDisable(true);
         }
         
-        this.stage = stage;
-        
         stage.show();
+        
+        this.stage = stage;
     }
     
     @Override

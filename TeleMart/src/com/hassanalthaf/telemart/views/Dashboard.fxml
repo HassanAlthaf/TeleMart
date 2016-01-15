@@ -100,8 +100,8 @@
                   </TableColumn>
               </columns>
             </TableView>
-            <Button layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inventoryTableUpdate" prefWidth="75.0" text="Update" />
-            <Button layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inventoryTableDelete" prefWidth="75.0" text="Delete" />
+            <Button fx:id="viewInventoryUpdate" layoutX="95.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inventoryTableUpdate" prefWidth="75.0" text="Update" />
+            <Button fx:id="viewInventoryDelete" layoutX="180.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inventoryTableDelete" prefWidth="75.0" text="Delete" />
             <Button layoutX="515.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inventoryTableRefresh" prefWidth="75.0" text="Refresh" />
             <Button layoutX="10.0" layoutY="330.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inventoryTableViewDetails" prefWidth="75.0" text="View" />
             <Label layoutX="219.0" layoutY="10.0" styleClass="title" text="Inventory Listing" />
