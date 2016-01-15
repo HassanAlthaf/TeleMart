@@ -106,4 +106,14 @@ public class UserRepository {
         
         return true;
     }
+    
+    public void update(User user) {
+        Session session = this.databaseDriver.openSession();
+        
+        Transaction transaction = session.beginTransaction();
+        session.update(user);
+        transaction.commit();
+        
+        session.close();
+    }
 }

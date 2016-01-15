@@ -718,7 +718,7 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
-    private void populateManageUsersTable() {
+    public void populateManageUsersTable() {
         ObservableList<User> users = this.manageUsersTableView.getItems();
         users.clear();
         users.addAll(this.userController.fetchAll());
@@ -736,6 +736,19 @@ public class DashboardViewModel implements Initializable {
         }
     }
     
+    @FXML
+    private void updateUser(MouseEvent event) throws IOException {
+        if (this.manageUsersTableView.getSelectionModel().getSelectedItem() != null) {
+            User user = this.fetchSelectedUser();
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/UpdateUser.fxml"));
+            fxmlLoader.load();
+            UpdateUserViewModel updateUserViewModel = fxmlLoader.getController();
+            
+            updateUserViewModel.show(user, this.userState.getUser().getRank(), this.userController, this);
+        }
+    }
+   
     private User fetchSelectedUser() {
         return (User)this.manageUsersTableView.getSelectionModel().getSelectedItem();
     }

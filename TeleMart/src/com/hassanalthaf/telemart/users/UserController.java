@@ -48,11 +48,23 @@ public class UserController {
     }
     
     public void createUser(User user) throws Exception {
-        new UserValidator(user, false, "", false, "", this.userState.getUser().getRank());
+        new UserValidator(user, false, "", false, "", 0, this.userState.getUser().getRank(), true);
         
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         
         this.userRepository.insert(user);
+    }
+    
+    public void update(User user, int loggedInRank, boolean passwordChanged) throws Exception {
+        User oldUser = this.userRepository.fetch(user.getId());
+        
+        new UserValidator(user, true, oldUser.getNicNumber(), true, oldUser.getUsername(), oldUser.getRank(), loggedInRank, passwordChanged);
+        
+        if (passwordChanged) {
+            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        }
+        
+        this.userRepository.update(user);
     }
     
 }

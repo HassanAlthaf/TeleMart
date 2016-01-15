@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="updateUser" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.hassanalthaf.telemart.viewmodels.UpdateUserViewModel">
+    <children>
+        <Label layoutX="238.0" layoutY="10.0" styleClass="title" text="Update User" />
+        <Label layoutX="14.0" layoutY="96.0" styleClass="input-label" text="NIC Number:" />
+        <Label layoutX="328.0" layoutY="97.0" styleClass="input-label" text="Username:" />
+        <Label layoutX="330.0" layoutY="139.0" styleClass="input-label" text="Password:" />
+        <Label layoutX="34.0" layoutY="137.0" styleClass="input-label" text="Full name:" />
+        <Label layoutX="150.0" layoutY="217.0" styleClass="input-label" text="Contact Number:" />
+        <Label layoutX="65.0" layoutY="177.0" styleClass="input-label" text="Email:" />
+        <Label layoutX="341.0" layoutY="177.0" styleClass="input-label" text="Address:" />
+        <Label layoutX="228.0" layoutY="257.0" styleClass="input-label" text="Salary:" />
+        <Label fx:id="success" alignment="CENTER" layoutX="14.0" layoutY="48.0" opacity="0.0" prefHeight="33.0" prefWidth="572.0" styleClass="success-area" />
+        <Label fx:id="errors" alignment="CENTER" layoutX="14.0" layoutY="48.0" opacity="0.0" prefWidth="572.0" styleClass="errors-area" />
+        <TextField fx:id="nicNumber" layoutX="124.0" layoutY="93.0" />
+        <TextField fx:id="username" layoutX="419.0" layoutY="93.0" />
+        <TextField fx:id="password" layoutX="419.0" layoutY="133.0" />
+        <TextField fx:id="fullName" layoutX="124.0" layoutY="133.0" />
+        <TextField fx:id="email" layoutX="124.0" layoutY="173.0" />
+        <TextField fx:id="address" layoutX="419.0" layoutY="173.0" />
+        <TextField fx:id="salary" layoutX="320.0" layoutY="253.0" />
+        <TextField fx:id="contactNumber" layoutX="320.0" layoutY="213.0" />
+        <Label layoutX="237.0" layoutY="297.0" styleClass="input-label" text="Rank:" />
+        <ChoiceBox fx:id="rank" layoutX="320.0" layoutY="293.0" prefHeight="27.0" prefWidth="167.0" styleClass="input-field" />
+        <Button layoutX="521.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#addUser" text="Submit" />
+    </children>
+</AnchorPane>

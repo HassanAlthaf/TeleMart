@@ -23,12 +23,12 @@ public class UserValidator {
     private Pattern nicNumberPattern = Pattern.compile("^[0-9]{9}[vVxX]$");
     private UserRepository userRepository;
     
-    public UserValidator(User user, boolean allowDuplicateNIC, String originalNIC, boolean allowDuplicateUsername, String originalUsername, int creatorRank) throws Exception {
+    public UserValidator(User user, boolean allowDuplicateNIC, String originalNIC, boolean allowDuplicateUsername, String originalUsername, int userOriginalRank, int creatorRank, boolean updateUserPassword) throws Exception {
         this.userRepository = new UserRepository();
-        this.validatePermission(creatorRank, user.getRank());
+        this.validatePermission(creatorRank, userOriginalRank);
         this.validateNicNumber(user.getNicNumber(), allowDuplicateNIC, originalNIC);
         this.validateUsername(user.getUsername(), allowDuplicateUsername, originalUsername);
-        this.validatePassword(user.getPassword());
+        this.validatePassword(user.getPassword(), updateUserPassword);
         this.validateFullName(user.getFullName());
         this.validateContactNumber(user.getContactNumber());
         this.validateEmail(user.getEmail());
@@ -45,8 +45,9 @@ public class UserValidator {
         }
         
         if (userRank >= UserRanks.MANAGER.getValue() && rank != UserRanks.ADMINISTRATOR.getValue()) {
-            throw new NoPermissionException("You cannot create Managers and Administrators!");
+            throw new NoPermissionException("You cannot manage Managers and Administrators!");
         }
+     
     }
     
     public void validateNicNumber(String nicNumber, boolean allowDuplicateNIC, String originalNIC) throws InvalidFormatException, UniqueAttributeDuplicationException {
@@ -76,9 +77,9 @@ public class UserValidator {
         
     }
     
-    public void validatePassword(String password) throws InvalidLengthException {
+    public void validatePassword(String password, boolean updateUserPassword) throws InvalidLengthException {
         
-        if (password.length() < 6 || password.length() > 72) {
+        if (password.length() < 6 || password.length() > 72 && updateUserPassword) {
             throw new InvalidLengthException("Password can be from 6 to 72 characters only.");
         }
         
