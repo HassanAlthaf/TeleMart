@@ -12,7 +12,7 @@
     <children>
         <Label layoutX="207.0" layoutY="10.0" styleClass="title" text="View Order Details" />
         <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#viewCustomer" text="Customer" />
-        <Button layoutX="108.0" layoutY="52.0" mnemonicParsing="false" text="Operator" />
+        <Button layoutX="108.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#viewOperator" text="Operator" />
         <Label fx:id="date" alignment="CENTER_RIGHT" layoutX="461.0" layoutY="60.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="125.0" />
         <TableView fx:id="orderItems" layoutX="14.0" layoutY="100.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="572.0">
             <columns>

@@ -103,7 +103,11 @@ public class ViewOrderViewModel implements Initializable {
     private void viewOperator(MouseEvent event) throws Exception {
         User user = this.order.getUser();
         
-        // @TODO: Complete User Module.
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/ViewUser.fxml"));
+        fxmlLoader.load();
+        ViewUserViewModel viewUserViewModel = fxmlLoader.getController();
+        
+        viewUserViewModel.show(user);
     }
     
     @FXML
