@@ -53,7 +53,10 @@ public class UserRepository {
     
     public List<User> fetchAll() {
         Session session = this.databaseDriver.openSession();
-        return session.createCriteria(User.class).list();
+        
+        Criteria criteria = session.createCriteria(User.class);
+        
+        return criteria.list();
     }
     
     public User fetchByUsername(String username) throws UserNotFoundException {

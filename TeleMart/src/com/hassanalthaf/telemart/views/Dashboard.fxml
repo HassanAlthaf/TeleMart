@@ -14,10 +14,9 @@
    <children>
       <MenuBar maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="System">
             <items>
               <MenuItem fx:id="homeMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Dashboard" />
-                  <MenuItem fx:id="anotherPageMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="About" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Inventory">
@@ -41,6 +40,7 @@
             <Menu mnemonicParsing="false" text="Users">
               <items>
                 <MenuItem fx:id="addUserMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Add User" />
+                  <MenuItem fx:id="manageUsersMenuItem" mnemonicParsing="false" onAction="#menuItemClick" text="Manage Users" />
               </items>
             </Menu>
             <Menu fx:id="userMenu" mnemonicParsing="false" text="User">
@@ -266,6 +266,49 @@
             <Label layoutX="237.0" layoutY="297.0" styleClass="input-label" text="Rank:" />
             <ChoiceBox fx:id="addUserRank" layoutX="320.0" layoutY="293.0" prefHeight="27.0" prefWidth="167.0" styleClass="input-field" />
             <Button layoutX="521.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#addUser" text="Submit" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="manageUsers" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+         <children>
+            <Label layoutX="230.0" layoutY="10.0" styleClass="title" text="Manage Users" />
+            <Label fx:id="manageUsersSuccess" alignment="CENTER" layoutX="14.0" layoutY="46.0" opacity="0.0" prefWidth="572.0" styleClass="success-area" />
+            <Label fx:id="manageUsersErrors" alignment="CENTER" layoutX="14.0" layoutY="46.0" opacity="0.0" prefWidth="572.0" styleClass="errors-area" />
+            <TableView fx:id="manageUsersTableView" layoutX="14.0" layoutY="86.0" prefHeight="227.0" prefWidth="572.0">
+              <columns>
+                  <TableColumn text="Username">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="username" /> 
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn text="Full name">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="fullName" /> 
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn text="Email">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="email" /> 
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn text="NIC">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="nicNumber" /> 
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn text="Salary">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="salary" /> 
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn text="Rank">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="rank" /> 
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+            </TableView>
+            <Button layoutX="426.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#viewUser" prefWidth="75.0" text="View" />
+            <Button layoutX="511.0" layoutY="323.0" mnemonicParsing="false" prefWidth="75.0" text="Update" />
          </children>
       </AnchorPane>
    </children>

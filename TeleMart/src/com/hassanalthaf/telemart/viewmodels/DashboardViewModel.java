@@ -75,6 +75,9 @@ public class DashboardViewModel implements Initializable {
     private AnchorPane addUser;
     
     @FXML
+    private AnchorPane manageUsers;
+    
+    @FXML
     private TableView productTableView;
     
     @FXML
@@ -188,6 +191,15 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private ChoiceBox addUserRank;
     
+    @FXML
+    private Label manageUsersSuccess;
+    
+    @FXML
+    private Label manageUsersErrors;
+    
+    @FXML
+    private TableView manageUsersTableView;
+    
     private CustomerController customerController;
     private ProductController productController;
     private OrderController orderController;
@@ -241,6 +253,7 @@ public class DashboardViewModel implements Initializable {
         String id = clickedItem.getId();
         
         if (this.userState.getUser() != null) {
+            
             switch (id) {
                 case "homeMenuItem":
                     this.changePage(this.home, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
@@ -272,6 +285,10 @@ public class DashboardViewModel implements Initializable {
                 case "addUserMenuItem":
                     this.changePage(this.addUser, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
                     this.initializeAddOrder();
+                    break;
+                case "manageUsersMenuItem":
+                    this.changePage(this.manageUsers, new int[]{UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
+                    this.populateManageUsersTable();
                     break;
                 default:
                     this.changePage(this.home, new int[]{UserRanks.CASHIER.getValue(), UserRanks.SALES_EXECUTIVE.getValue(), UserRanks.MANAGER.getValue(), UserRanks.ADMINISTRATOR.getValue()});
@@ -699,6 +716,28 @@ public class DashboardViewModel implements Initializable {
         if (this.userState.getUser().getRank() == UserRanks.ADMINISTRATOR.getValue()) {
             this.addUserRank.getItems().addAll("Manager", "Administrator");
         }
+    }
+    
+    private void populateManageUsersTable() {
+        ObservableList<User> users = this.manageUsersTableView.getItems();
+        users.clear();
+        users.addAll(this.userController.fetchAll());
+    }
+    
+    @FXML
+    private void viewUser(MouseEvent event) throws IOException {
+        if (this.manageUsersTableView.getSelectionModel().getSelectedItem() != null) {
+            User user = this.fetchSelectedUser();
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/hassanalthaf/telemart/views/ViewUser.fxml"));
+            fxmlLoader.load();
+            ViewUserViewModel viewUserViewModel = fxmlLoader.getController();
+            viewUserViewModel.show(user);
+        }
+    }
+    
+    private User fetchSelectedUser() {
+        return (User)this.manageUsersTableView.getSelectionModel().getSelectedItem();
     }
     
     public void show(Parent main, UserState userState) {

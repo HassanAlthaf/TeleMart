@@ -6,6 +6,7 @@
 package com.hassanalthaf.telemart.users;
 
 import com.hassanalthaf.telemart.users.exceptions.UserNotFoundException;
+import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -40,6 +41,10 @@ public class UserController {
         } catch (UserNotFoundException exception) {
             return UserLoginResponseModes.INVALID;
         }
+    }
+    
+    public List<User> fetchAll() {
+        return this.userRepository.fetchAll();
     }
     
     public void createUser(User user) throws Exception {
