@@ -33,6 +33,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -76,6 +77,9 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private AnchorPane manageUsers;
+    
+    @FXML
+    private AnchorPane accessForbidden;
     
     @FXML
     private TableView productTableView;
@@ -200,6 +204,9 @@ public class DashboardViewModel implements Initializable {
     @FXML
     private TableView manageUsersTableView;
     
+    @FXML
+    private MenuBar menuBar;
+    
     private CustomerController customerController;
     private ProductController productController;
     private OrderController orderController;
@@ -220,12 +227,14 @@ public class DashboardViewModel implements Initializable {
             }
         }
         
-        if (allowed) {
-            this.currentPage.setOpacity(0);
-            this.currentPage = page;
-            this.currentPage.toFront();
-            this.currentPage.setOpacity(1);
+        if (!allowed) {
+            page = this.accessForbidden;
         }
+        
+        this.currentPage.setOpacity(0);
+        this.currentPage = page;
+        this.currentPage.toFront();
+        this.currentPage.setOpacity(1);
     }
     
     public void populateProductsTable() {
@@ -763,8 +772,6 @@ public class DashboardViewModel implements Initializable {
         
         this.userMenu.setText(userState.getUser().getUsername());
         
-        stage.show();
-        
         Stage mainStage = (Stage)main.getScene().getWindow();
         mainStage.close();
         
@@ -776,7 +783,16 @@ public class DashboardViewModel implements Initializable {
         this.orderController = new OrderController();
         this.userController = new UserController(this.userState);
         
+        int userRank = this.userState.getUser().getRank();
+        
+        if (userRank < UserRanks.MANAGER.getValue()) {
+            this.menuBar.getMenus().remove(3);
+            this.menuBar.getMenus().remove(4);
+        }
+        
         this.stage = stage;
+        
+        stage.show();
     }
     
     @Override

@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="dashboard" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hassanalthaf.telemart.viewmodels.DashboardViewModel">
    <children>
-      <MenuBar maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
+      <MenuBar fx:id="menuBar" maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
         <menus>
           <Menu mnemonicParsing="false" text="System">
             <items>
@@ -315,7 +315,7 @@
             <Label layoutX="246.0" layoutY="10.0" styleClass="title" text="Dashboard" />
             <Label layoutX="112.0" layoutY="176.0" styleClass="input-label" text="Welcome, use the navigation to view other pages." />
          </children></AnchorPane>
-      <AnchorPane fx:id="accessForbidden" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
+      <AnchorPane fx:id="accessForbidden" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="371.0" prefWidth="600.0" styleClass="anchor-pane">
          <children>
             <Label layoutX="214.0" layoutY="10.0" styleClass="title" text="Access Forbidden" />
             <Label layoutX="23.0" layoutY="176.0" styleClass="input-label" text="Sorry, but you do not have the necessary priviledges to access this page." />
