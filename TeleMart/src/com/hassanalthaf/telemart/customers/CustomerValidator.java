@@ -36,7 +36,7 @@ public class CustomerValidator {
             throw new InvalidFormatException("The NIC Number has an invalid format.");
         }
         
-        if(!allowDuplicateNIC && (nicNumber != originalNIC)) {
+        if(!allowDuplicateNIC && (!nicNumber.equals(originalNIC))) {
             if (this.customerRepository.isNicNumberTaken(nicNumber)) {
                 throw new UniqueAttributeDuplicationException("The NIC Number is already taken.");
             }

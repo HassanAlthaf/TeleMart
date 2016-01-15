@@ -42,4 +42,12 @@ public class UserController {
         }
     }
     
+    public void createUser(User user) throws Exception {
+        new UserValidator(user, false, "", false, "", this.userState.getUser().getRank());
+        
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        
+        this.userRepository.insert(user);
+    }
+    
 }

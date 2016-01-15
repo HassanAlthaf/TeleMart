@@ -10,6 +10,7 @@ import com.hassanalthaf.telemart.users.exceptions.UserNotFoundException;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -22,6 +23,16 @@ public class UserRepository {
     
     public UserRepository() {
         this.databaseDriver = DatabaseDriver.getInstance();
+    }
+    
+    public void insert(User user) {
+        Session session = this.databaseDriver.openSession();
+        
+        Transaction transaction = session.beginTransaction();
+        session.save(user);
+        transaction.commit();
+        
+        session.close();
     }
     
     public User fetch(int id) throws UserNotFoundException {
@@ -59,5 +70,37 @@ public class UserRepository {
         }
         
         return users.get(0);
+    }
+    
+    public boolean isNicNumberTaken(String nicNumber) {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(User.class);
+        
+        criteria.add(Restrictions.eq("nicNumber", nicNumber));
+        
+        List<User> users = criteria.list();
+        
+        if (users.size() < 1) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean isUsernameTaken(String username) {
+        Session session = this.databaseDriver.openSession();
+        
+        Criteria criteria = session.createCriteria(User.class);
+        
+        criteria.add(Restrictions.eq("username", username));
+        
+        List<User> users = criteria.list();
+        
+        if (users.size() < 1) {
+            return false;
+        }
+        
+        return true;
     }
 }

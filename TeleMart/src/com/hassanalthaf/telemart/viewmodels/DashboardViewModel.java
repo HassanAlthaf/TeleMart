@@ -14,6 +14,8 @@ import com.hassanalthaf.telemart.orders.Order;
 import com.hassanalthaf.telemart.orders.OrderController;
 import com.hassanalthaf.telemart.orders.OrderItem;
 import com.hassanalthaf.telemart.orders.OrderState;
+import com.hassanalthaf.telemart.users.User;
+import com.hassanalthaf.telemart.users.UserController;
 import com.hassanalthaf.telemart.users.UserRanks;
 import com.hassanalthaf.telemart.users.UserState;
 import java.io.IOException;
@@ -193,6 +195,7 @@ public class DashboardViewModel implements Initializable {
     private UserState userState;
     private OrderState orderState;
     private Stage stage;
+    private UserController userController;
 
     
     private void changePage(AnchorPane page, int[] allowedRanks) {
@@ -635,11 +638,63 @@ public class DashboardViewModel implements Initializable {
     
     @FXML
     private void addUser(MouseEvent event) {
+        User user = new User();
         
+        user.setNicNumber(this.addUserNICNumber.getText());
+        user.setUsername(this.addUserUsername.getText());
+        user.setPassword(this.addUserPassword.getText());
+        user.setFullName(this.addUserFullName.getText());
+        
+        int contactNumber;
+        
+        try {
+            contactNumber = Integer.parseInt(this.addUserContactNumber.getText());
+        } catch (Exception exception) {
+            this.addUserErrorMessage("Contact number must only contain numbers!");
+            return;
+        }
+        
+        user.setContactNumber(contactNumber);
+        user.setEmail(this.addUserEmail.getText());
+        user.setAddress(this.addUserAddress.getText());
+        
+        double salary;
+        
+        try {
+            salary = Double.parseDouble(this.addUserSalary.getText());
+        } catch (Exception xception) {
+            this.addUserErrorMessage("The salary field may only contain decimals and numbers!");
+            return;
+        }
+        
+        user.setSalary(salary);
+        
+        user.setRank(this.addUserRank.getSelectionModel().getSelectedIndex());
+        
+        try {
+            this.userController.createUser(user);
+        } catch (Exception exception) {
+            this.addUserErrorMessage(exception.getMessage());
+            return;
+        }
+        
+        this.addUserSuccessMessage("Successfully created user!");
+    }
+    
+    private void addUserSuccessMessage(String message) {
+        this.addUserErrors.setOpacity(0);
+        this.addUserSuccess.setText(message);
+        this.addUserSuccess.setOpacity(1);
+    }
+    
+    private void addUserErrorMessage(String message) {
+        this.addUserSuccess.setOpacity(0);
+        this.addUserErrors.setText(message);
+        this.addUserErrors.setOpacity(1);
     }
     
     private void initializeAddOrder() {
-        this.addUserRank.getItems().addAll("Cashier", "Sales Executive");
+        this.addUserRank.getItems().addAll("Disabled", "Cashier", "Sales Executive");
         
         if (this.userState.getUser().getRank() == UserRanks.ADMINISTRATOR.getValue()) {
             this.addUserRank.getItems().addAll("Manager", "Administrator");
@@ -667,6 +722,7 @@ public class DashboardViewModel implements Initializable {
         this.customerController = new CustomerController();
         this.productController = new ProductController();
         this.orderController = new OrderController();
+        this.userController = new UserController(this.userState);
         
         this.stage = stage;
     }
