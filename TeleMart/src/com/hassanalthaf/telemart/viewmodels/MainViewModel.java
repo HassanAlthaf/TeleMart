@@ -78,7 +78,7 @@ public class MainViewModel implements Initializable {
             case SUCCESS:
                 try {
                     this.openDashboard();
-                } catch (IOException exception) {
+                } catch (Exception exception) {
                     this.errorBox.setText("Failed to launch dashboard.");
                     exception.printStackTrace();
                 }

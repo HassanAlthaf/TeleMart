@@ -726,6 +726,7 @@ public class DashboardViewModel implements Initializable {
     }
     
     private void initializeAddOrder() {
+        this.addUserRank.getItems().clear();
         this.addUserRank.getItems().addAll("Disabled", "Cashier", "Sales Executive");
         
         if (this.userState.getUser().getRank() == UserRanks.ADMINISTRATOR.getValue()) {
